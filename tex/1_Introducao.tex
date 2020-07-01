@@ -1,10 +1,10 @@
-Cliques em paginas da web, interações de usuários em serviços de \textit{streaming} ou dispositivos \textit{IoT}, são exemplos de tecnologias que geram dados a uma alta frequência.
-Na era do Big Data \cite{tarnoff2018big, finger2014data},
-diversas companhias tem tirado proveito dessa quantidade massiva de dados através de mineração de dados com objetivo de agregar informações valiosas aos usuários desses sistemas, como recomendações de conteúdo (filmes, músicas, etc.) ou filtrar conteúdos específicos que usuários de mídias sociais preferem ver. Aprendizado de Máquina (AM) é uma das tendencias que se sobressaem entre as técnicas de mineração de dados. AM extrai padrões dos dados através da indução de modelos, permitindo prever eventos futuros \cite{Mitchell1997}.
+Cliques em paginas de mídias sociais, interações de usuários em serviços de \textit{streaming} ou dispositivos \textit{IoT}, são exemplos de tecnologias que geram dados a uma alta frequência diariamente.
+Na ``era do Big Data'' \cite{tarnoff2018big, finger2014data},
+diversas companhias tem tirado proveito dessas quantidades massivas de dados através da mineração com objetivo de agregar informações valiosas aos usuários desses sistemas, como recomendações de conteúdo (filmes, músicas, etc.) ou filtrar conteúdos customizados da preferencia dos usuários de mídias sociais. Aprendizado de Máquina (AM) é uma das tendencias que se sobressaem entre as técnicas de mineração de dados. O AM extrai padrões dos dados através da indução de modelos, permitindo prever eventos futuros \cite{mitchell1997machine,friedman2001elements}.
 
-Como todo método indutivo, algoritmos tradicionais de AM assumem duas premissas que devem ser satisfeitas para que ele funcione corretamente: ($i$) o futuro deve se comportar como o passado e ($ii$) eventos futuros devem ser independentes de eventos passado \cite{vapnik2013nature}.
+Como todo método indutivo, algoritmos tradicionais de AM assumem duas premissas que devem ser satisfeitas para que funcionem corretamente: ($i$) o futuro deve se comportar como o passado e ($ii$) eventos futuros devem ser independentes de eventos passado \cite{vapnik2013nature}.
 Entretanto, em um fluxo de dados continuo (em inglês, \textit{Data Stream}), a distribuição que gera os dados usualmente está mudando com o tempo.
-Logo, essas premissas podem não ser manter e a performance dos modelos induzidos podem perecer com o passar do tempo, causando uma má experiência aos usuários desses sistemas  \cite{gama2007learning, Johansson2014}. 
+Logo, essas premissas podem não se manter e a performance dos modelos induzidos podem perecer com o passar do tempo, causando uma má experiência aos usuários desses sistemas  \cite{gama2007learning, Johansson2014}. 
 
 Diversos métodos foram desenvolvidos para lidar em ambientes com mudanças temporais, como detecção de mudança de conceito \cite{klinkenberg2000detecting}, retreino periódico de algoritmo \cite{bifet2007learning} ou novas abordagens de algoritmos, especialmente projetados para esse contexto \cite{zang2014comparative}.
 
@@ -17,7 +17,7 @@ Esses meta-atributos são extraídos e combinados criando um meta-exemplo.
 Diferentes algoritmos de AM são aplicados ao problema, e suas performances são utilizadas para rotular os meta-exemplos.
 Esse procedimento é performado para o fluxo de dados em diferentes pontos no tempo, resultando em um conjunto de meta-dados, o qual pode ser usado para induzir um modelo capaz de predizer qual será o algoritmo mais apropriado para eventos futuros sem os altos custos usuais que o processo de seleção de modelos de ML demanda \cite{Munoz2018}.
 
-Nesse trabalho aprimoramos o MetaStream \cite{rossi2012, rossi2014metastream}, um \textit{framework} baseado em seleção periódica de algoritmos em fluxos de dados usando MtA, extendendo os meta-atributos para mais modernos e informativos \cite{Rivolli2018},
+Nesse trabalho o MetaStream \cite{rossi2012, rossi2014metastream}, um \textit{framework} baseado em seleção periódica de algoritmos em fluxos de dados usando MtA, é aprimorado pela extensão de meta-atributos para mais modernos e informativos \cite{Rivolli2018},
 e incluindo aprendizado incremental no nível meta, propondo o  LightGBM \cite{ke2017lightgbm} como meta-classificador,
 dado suas capacidades para lidar com esse problema específico.
 Seguimos então para investigar se meta-atributos de ponta e aprendizado incremental provido pelo LightGBM são capazes de predizer de forma mais precisa que o método base e aprimorar a performance geral do sistema aprendiz.

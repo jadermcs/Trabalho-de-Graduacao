@@ -257,15 +257,16 @@ Esse particionamento é então aplicado recursivamente até que seja atingido
 algum critério de regularização, por exemplo, o limite mínimo para $m$ ou
 definido um valor minimo para $H$.
 
-O algoritmo de Floresta Aleatória combina diversas das árvores de decisão
-explicadas anteriormente através do método de subespaço aleatório
-(\textit{random subspace method}). Esse método consiste em realizar um
-\textit{Bagging}, isto é, estimar modelos em subamostras aleatórias (com
-repetição) do conjunto de dados e ao final as estimativas desses modelos são
-combinadas, a diferença para com o método do subespaço aleatório é que nessas
-subamostras alguns atributos são descartados aleatoriamente, isso é feito para
-que aumente a variância entre as árvores e possivelmente se tenha maior
-generalização.
+Embora árvores de decisão tenha diversas vantagens, elas tendem a sobreajustar
+aos dados, uma possível solução para isso é o uso de comitês. O algoritmo de
+Floresta Aleatória combina diversas das árvores de decisão explicadas
+anteriormente através do método de subespaço aleatório (\textit{random subspace
+method}). Esse método consiste em realizar um \textit{Bagging}, isto é, estimar
+modelos em subamostras aleatórias (com repetição) do conjunto de dados e ao
+final as estimativas desses modelos são combinadas, a diferença para com o
+método do subespaço aleatório é que nessas subamostras alguns atributos são
+descartados aleatoriamente, isso é feito para que aumente a variância entre as
+árvores e possivelmente se tenha maior generalização.
 
 
 

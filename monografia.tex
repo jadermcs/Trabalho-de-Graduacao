@@ -1,3 +1,4 @@
+% !TEX program = pdflatex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Classe do documento
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,7 +12,14 @@
 
 \usepackage{pdfpages}% incluir PDFs, usado no apêndice
 \usepackage{amsfonts}
-
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{transparent}
+% \usepackage{caption}
+\usepackage{subcaption}
+\newcommand{\incfig}[1]{%
+    \import{./img/}{#1.pdf_tex}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Informações do Trabalho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

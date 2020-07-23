@@ -169,7 +169,16 @@ programas geradores que se pode assumir deve ser limitada, apenas dados gerados
 de forma independente por uma distribuição estacionaria nos garante a validade
 das propriedades dos teoremas apresentados a seguir.
 
-Limitemos as funções computáveis que queremos descobrir a retângulos que classificam pontos em $\mathbb{R}^2$ , os quais pertencem aos conjunto de conceitos $\mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$ classifique o ponto em 1 se contido dentro do retângulo ou 0 c.c, isto é, $c:\mathcal{X}\rightarrow\mathcal{Y}$, sendo $\mathcal{X} \in \mathbb{R}^2$, as coordenadas no plano cartesiano e $\mathcal{Y} \in \{0,1\}$, a classe ao qual aquele ponto é atribuída. O algoritmo deve conter um espaço de hipóteses fixo $\mathcal{H}$ que não necessariamente coincida com $\mathcal{C}$ e obter amostras $S=(X_1,X_2,...,X_m)$ obtidas da distribuição $\mathcal{D}$, esta i.i.d. (independente e identicamente distribuído) como descrito anteriormente.
+Limitemos as funções computáveis que queremos descobrir a retângulos que
+classificam pontos em $\mathbb{R}^2$ , os quais pertencem aos conjunto de
+conceitos $\mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$ classifique
+o ponto em 1 se contido dentro do retângulo ou 0 c.c, isto é,
+$c:\mathcal{X}\rightarrow\mathcal{Y}$, sendo $\mathcal{X} \in \mathbb{R}^2$, as
+coordenadas no plano cartesiano e $\mathcal{Y} \in \{0,1\}$, a classe ao qual
+aquele ponto é atribuída. O algoritmo deve conter um espaço de hipóteses fixo
+$\mathcal{H}$ que não necessariamente coincida com $\mathcal{C}$ e obter
+amostras $S=(X_1,X_2,...,X_m)$ obtidas da distribuição $\mathcal{D}$, esta
+i.i.d. (independente e identicamente distribuído) como descrito anteriormente.
 
 \textcolor{red}{falar do pac learning, np-complexidade}
 
@@ -264,20 +273,34 @@ aos dados, uma possível solução para isso é o uso de comitês.
 
 \subsection{Floresta Aleatória}
 
-Árvores de decisão podem ``decorar'' os dados de treino, não generalizando para casos desconhecidos, o chamado sobreajuste. O \textit{Bagging}, uma técnica de reamostragem, tenta diminuir esse sobreajuste por meio da diminuição da variação entre os modelos, ou seja, modelos obtidos de forma independente tendam a uma mesma predição. Ele consiste em designar subamostras aleatórias (com repetição) do conjunto de dados e ao final as estimativas desses modelos são combinadas.
+Árvores de decisão podem ``decorar'' os dados de treino, não generalizando para
+casos desconhecidos, o chamado sobreajuste. O \textit{Bagging}, uma técnica de
+reamostragem, tenta diminuir esse sobreajuste por meio da diminuição da
+variação entre os modelos, ou seja, modelos obtidos de forma independente
+tendam a uma mesma predição. Ele consiste em designar subamostras aleatórias
+(com repetição) do conjunto de dados e ao final as estimativas desses modelos
+são combinadas.
 
-Porém ainda assim, dado a natureza determinística e a flexibilidade de uma árvore de decisão o problema do sobreajuste pode não ser resolvido, é necessário então aleatorizar o processo de geração da árvore. O método de subespaço aleatório (\textit{random subspace method}) provê isso limitando o espaço de busca por bipartições da árvore, a cada novo nó da árvore que está sendo construída, apenas um subconjunto aleatório dos atributos pode ser escolhido para a bipartição dos dados.
+Porém ainda assim, dado a natureza determinística e a flexibilidade de uma
+árvore de decisão o problema do sobreajuste pode não ser resolvido, é
+necessário então aleatorizar o processo de geração da árvore. O método de
+subespaço aleatório (\textit{random subspace method}) provê isso limitando o
+espaço de busca por bipartições da árvore, a cada novo nó da árvore que está
+sendo construída, apenas um subconjunto aleatório dos atributos pode ser
+escolhido para a bipartição dos dados.
 
 \begin{algorithm}[H]
 \SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
 \KwData{Conjunto de dados D com atributos p.}
-\KwInput{B - Número de estimadores a serem construídos, m - Número de atributos nos subconjuntos.}
+\KwInput{B - Número de estimadores a serem construídos, m - Número de atributos
+nos subconjuntos.}
 \KwOutput{Classificador - Maioria dos votos de $\{T_b\}^B$.}
 \begin{enumerate}
     \item Para b=1 até B.
     \begin{enumerate}
-        \item Obtenha um subconjunto aleatório com repetição (\textit{Bootstrap}) de D.
+        \item Obtenha um subconjunto aleatório com repetição
+            (\textit{Bootstrap}) de D.
         \item Construa uma árvore $T_b$ recursivamente da seguinte forma:
         \begin{enumerate}
             \item Selecione m variáveis do conjunto p.
@@ -291,19 +314,81 @@ Porém ainda assim, dado a natureza determinística e a flexibilidade de uma ár
  \label{algo:rf}
 \end{algorithm}
 
-Essa limitação garante que as árvores de entropia máxima não possam ser sempre geradas, diminuindo a correlação entre as árvores e, portanto, melhorando a capacidade de generalização desse estimador. No Algoritmo \ref{algo:rf} é apresentado o pseudo-código da Floresta Aleatória.
-
+Essa limitação garante que as árvores de entropia máxima não possam ser sempre
+geradas, diminuindo a correlação entre as árvores e, portanto, melhorando a
+capacidade de generalização desse estimador. No Algoritmo \ref{algo:rf} é
+apresentado o pseudo-código da Floresta Aleatória.
 
 \subsection{Máquina de Reforço do Gradiente}
 
 \subsection{Máquina de Vetores de Suporte}
 
-É plausível então uma ideia, e se colocássemos apenas os ``bons programas'',
-isto é, de alguma forma adicionar apenas aqueles de menor descrição, no espaço
-espaço de hipótese do algoritmo para ser selecionado? Devido ao teorema do
-\textit{No Free Lunch} \cite{wolpert1997no,wolpert1996lack} temos uma prova que
-tal algoritmo seria inconcebível, pois não é possível ter um melhor algoritmo
-para todos os casos \cite{rathmanner2011philosophical}, o que nos é apresentado
+Máquinas de vetores de suporte são construídas em cima de duas idéias muito
+elegantes do ponto de vista teórico, classificadores de máxima margem e
+projeções vetoriais. Classificadores de máxima margem obtém um hiperplano de
+solução unica tal que a margem entre esse hiperplano e os pontos de duas
+classes, se linearmente separáveis, seja máximo, resultando em um hiperplano
+com garantias de uma boa generalização \cite{vapnik2013nature}.
+
+\begin{figure}[ht]
+   \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \def\svgwidth{\linewidth}
+        \incfig{maxmargin}
+    \end{subfigure}
+     \hfill
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \def\svgwidth{\linewidth}
+        \incfig{svm}
+    \end{subfigure}
+    \caption{Máquina de vetores de suporte. A direita temos exemplos de dados
+    que são linearmente separáveis logo é possível margens rigidas e a direita
+    dados não-linearmente separáveis onde são necessárias margens permissivas.
+    Os pontos $\xi_i$ são aqueles que estão do lado errado do plano.}
+    \label{fig:svm}
+\end{figure}
+Porém, uma vasta gama problemas não apresenta uma separação linear entre as
+classes, sendo necessárias duas abordagens generalizar esse algoritmo, projetar
+os dados em uma dimensão em que sejam linearmente separaveis, possívelmente uma
+dimensão infinita através do \textit{kernel trick}, e também tornar as margens
+menos restritas para se adaptarem a ruídos nos dados. Inicialmente definimos o
+hiperplano como
+
+\begin{equation}
+    x^T\beta + \beta_0 = 0
+\end{equation}
+
+Sendo $\beta$ o vetor unitário, isto é $\Vert\beta\Vert = 1$ e a regra de
+classificação é dada por
+
+\begin{equation}
+    G(x) = \text{sign}(x^T\beta + \beta_0)
+\end{equation}
+
+Para obter o hiperplano de máxima margem otimizamos $\beta$ restringindo o
+critério de otimização de tal forma que suavize para os pontos $\xi_i$, logo
+
+\begin{equation}
+    \underset{\beta,\beta_0}{\text{min}} \frac{1}{2}\Vert\beta\Vert^2 +
+    C\sum_{i=1}^{N}\xi_i \hspace{1em} \text{subject to } \xi_i \geq 0,
+    y_i(x_i^T\beta+\beta_0) \geq 1-\xi_i \forall i
+\end{equation}
+
+Onde $C$ é um hiperparametro definido \textit{apriori}.
+
+\textcolor{red}{descrever kernels}
+
+\subsection{``Não existe almoço grátis''}
+
+Vimos a viabilidade e descrevemos o projeto de alguns algoritmos, surge então a
+seguinte questão: ``E se colocássemos apenas os `bons programas', isto é, de
+alguma forma adicionar apenas aqueles de menor descrição, no espaço espaço de
+hipótese do algoritmo para ser selecionado?'' Devido ao teorema do \textit{No
+Free Lunch} \cite{wolpert1997no,wolpert1996lack} temos uma prova que tal
+algoritmo seria inconcebível, pois não é possível ter um melhor algoritmo para
+todos os casos \cite{rathmanner2011philosophical}, o que nos é apresentado
 intuitivamente pela teoria da inferência indutiva universal.
 
 O algoritmo, e consequentemente o espaço de hipóteses $\mathcal{H}$, é

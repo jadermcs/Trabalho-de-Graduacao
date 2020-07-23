@@ -169,6 +169,7 @@ programas geradores que se pode assumir deve ser limitada, apenas dados gerados
 de forma independente por uma distribuição estacionaria nos garante a validade
 das propriedades dos teoremas apresentados a seguir.
 
+Limitemos as funções computáveis que queremos descobrir a retângulos que classificam pontos em $\mathbb{R}^2$ , os quais pertencem aos conjunto de conceitos $\mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$ classifique o ponto em 1 se contido dentro do retângulo ou 0 c.c, isto é, $c:\mathcal{X}\rightarrow\mathcal{Y}$, sendo $\mathcal{X} \in \mathbb{R}^2$, as coordenadas no plano cartesiano e $\mathcal{Y} \in \{0,1\}$, a classe ao qual aquele ponto é atribuída. O algoritmo deve conter um espaço de hipóteses fixo $\mathcal{H}$ que não necessariamente coincida com $\mathcal{C}$ e obter amostras $S=(X_1,X_2,...,X_m)$ obtidas da distribuição $\mathcal{D}$, esta i.i.d. (independente e identicamente distribuído) como descrito anteriormente.
 
 \textcolor{red}{falar do pac learning, np-complexidade}
 
@@ -178,6 +179,7 @@ Existe uma diversidade de algoritmos para seleção de hipóteses
 Reforço (\textit{Boosting}) do Gradiente, também apresentaremos as Máquinas de
 Vetores de Suporte.
 
+\subsection{Árvores de Decisão}
 Árvores de Decisão são modelos que devido sua simplicidade tem fácil
 interpretabilidade e podem ser combinado com técnicas de amostragem e reforço
 em algoritmos em modelos muito mais poderosos. Embora exista um diversidade de
@@ -258,23 +260,43 @@ algum critério de regularização, por exemplo, o limite mínimo para $m$ ou
 definido um valor minimo para $H$.
 
 Embora árvores de decisão tenha diversas vantagens, elas tendem a sobreajustar
-aos dados, uma possível solução para isso é o uso de comitês. O algoritmo de
-Floresta Aleatória combina diversas das árvores de decisão explicadas
-anteriormente através do método de subespaço aleatório (\textit{random subspace
-method}). Esse método consiste em realizar um \textit{Bagging}, isto é, estimar
-modelos em subamostras aleatórias (com repetição) do conjunto de dados e ao
-final as estimativas desses modelos são combinadas, a diferença para com o
-método do subespaço aleatório é que nessas subamostras alguns atributos são
-descartados aleatoriamente, isso é feito para que aumente a variância entre as
-árvores e possivelmente se tenha maior generalização.
+aos dados, uma possível solução para isso é o uso de comitês.
+
+\subsection{Floresta Aleatória}
+
+Árvores de decisão podem ``decorar'' os dados de treino, não generalizando para casos desconhecidos, o chamado sobreajuste. O \textit{Bagging}, uma técnica de reamostragem, tenta diminuir esse sobreajuste por meio da diminuição da variação entre os modelos, ou seja, modelos obtidos de forma independente tendam a uma mesma predição. Ele consiste em designar subamostras aleatórias (com repetição) do conjunto de dados e ao final as estimativas desses modelos são combinadas.
+
+Porém ainda assim, dado a natureza determinística e a flexibilidade de uma árvore de decisão o problema do sobreajuste pode não ser resolvido, é necessário então aleatorizar o processo de geração da árvore. O método de subespaço aleatório (\textit{random subspace method}) provê isso limitando o espaço de busca por bipartições da árvore, a cada novo nó da árvore que está sendo construída, apenas um subconjunto aleatório dos atributos pode ser escolhido para a bipartição dos dados.
+
+\begin{algorithm}[H]
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\KwData{Conjunto de dados D com atributos p.}
+\KwInput{B - Número de estimadores a serem construídos, m - Número de atributos nos subconjuntos.}
+\KwOutput{Classificador - Maioria dos votos de $\{T_b\}^B$.}
+\begin{enumerate}
+    \item Para b=1 até B.
+    \begin{enumerate}
+        \item Obtenha um subconjunto aleatório com repetição (\textit{Bootstrap}) de D.
+        \item Construa uma árvore $T_b$ recursivamente da seguinte forma:
+        \begin{enumerate}
+            \item Selecione m variáveis do conjunto p.
+            \item Selecione a melhor variável e bipartição em m.
+            \item Divida o nó em dois nós filhos.
+        \end{enumerate}
+    \end{enumerate}
+    \item Retorne o conjunto de arvores $\{T_b\}^B$.
+\end{enumerate}
+ \caption{Floresta Aleatória}
+ \label{algo:rf}
+\end{algorithm}
+
+Essa limitação garante que as árvores de entropia máxima não possam ser sempre geradas, diminuindo a correlação entre as árvores e, portanto, melhorando a capacidade de generalização desse estimador. No Algoritmo \ref{algo:rf} é apresentado o pseudo-código da Floresta Aleatória.
 
 
+\subsection{Máquina de Reforço do Gradiente}
 
-\textcolor{red}{
-descrever lightgbm
-descrever kernels
-descrever svm
-}
+\subsection{Máquina de Vetores de Suporte}
 
 É plausível então uma ideia, e se colocássemos apenas os ``bons programas'',
 isto é, de alguma forma adicionar apenas aqueles de menor descrição, no espaço

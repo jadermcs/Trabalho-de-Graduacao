@@ -151,7 +151,7 @@ seria impossível descrever um \textbf{método efetivo} para proceder tal escolh
 Dimensão VC \cite{vapnik2013nature}, Complexidade de Rademacher
 \cite{bartlett2002rademacher} e PAC \cite{valiant1984theory} são casos
 restritos da inferência indutiva universal
-\cite{li1992inductive,blumer1989learnability}} é definir \textit{apriori} um
+\cite{li1992inductive,blumer1989learnability}} é definir \textit{a priori} um
 espaço de hipóteses $\mathcal{H}$ (programas) de menor
 cardinalidade\footnote{Também referido como Viés.}, e.g. todos os programas que
 podem ser descritos em Python com no máximo $10^9$ bits, assim, algoritmos
@@ -321,6 +321,14 @@ apresentado o pseudo-código da Floresta Aleatória.
 
 \subsection{Máquina de Reforço do Gradiente}
 
+O algoritmo de Floresta Aleatória nos dá uma idéia do poder que temos ao
+combinar algoritmos simples, também chamado \textit{weak learner}, em
+algoritmos mais robustos. Uma outra alternativa a combinação de modelos é o
+Reforço, ou \textit{Boosting}, esse consiste em criar estimadores a partir do
+residuo de estimadores anteriores, assim esse novo estimador tem uma tarefa
+mais simples e logo, quando combinado com toda a sequência de estimadores, pode
+apresentar maior robustez no aprendizado.
+
 \subsection{Máquina de Vetores de Suporte}
 
 Máquinas de vetores de suporte são construídas em cima de duas idéias muito
@@ -349,6 +357,7 @@ com garantias de uma boa generalização \cite{vapnik2013nature}.
     Os pontos $\xi_i$ são aqueles que estão do lado errado do plano.}
     \label{fig:svm}
 \end{figure}
+
 Porém, uma vasta gama problemas não apresenta uma separação linear entre as
 classes, sendo necessárias duas abordagens generalizar esse algoritmo, projetar
 os dados em uma dimensão em que sejam linearmente separaveis, possívelmente uma
@@ -357,6 +366,7 @@ menos restritas para se adaptarem a ruídos nos dados. Inicialmente definimos o
 hiperplano como
 
 \begin{equation}
+    \label{eq:svm_func}
     x^T\beta + \beta_0 = 0
 \end{equation}
 
@@ -364,6 +374,7 @@ Sendo $\beta$ o vetor unitário, isto é $\Vert\beta\Vert = 1$ e a regra de
 classificação é dada por
 
 \begin{equation}
+    \label{eq:svm_sign}
     G(x) = \text{sign}(x^T\beta + \beta_0)
 \end{equation}
 
@@ -376,27 +387,75 @@ critério de otimização de tal forma que suavize para os pontos $\xi_i$, logo
     y_i(x_i^T\beta+\beta_0) \geq 1-\xi_i \forall i
 \end{equation}
 
-Onde $C$ é um hiperparametro definido \textit{apriori}.
+Onde $C$ é um hiperparametro definido \textit{a priori} que ajusta a rigidez
+das margens quanto a pontos erroneamente classificados. Essa operação tem por
+forma primal de Lagrange
 
-\textcolor{red}{descrever kernels}
+\begin{equation}
+    \label{eq:lag_svm}
+    L_p = \frac{1}{2}\Vert\beta\Vert^2 + C\sum_{i=1}^{N}\xi_i -
+    \sum_{i=1}^{N}\alpha_i [y_i(x_i^T\beta+\beta_0) - (1-\xi_i)] -
+    \sum_{i=1}^{N}\mu_i\xi_i
+\end{equation}
+
+Porém como anteriormente discutido, nem todos os problemas podem ser
+linearmente separáveis, o que limitaria e muito a aplicabilidade desse
+algoritmo, uma alternativa a isso é projetar os dados em uma dimensão em que as
+classes sejam separáveis pelo hiperplano, essa projeção é feita por uma função
+$h(x)$, for exemplo $h(x) = (x_1^2, x_2^2, x_1^2+x_2^2)$ como mostrado na
+Figura \ref{fig:svm_kernel}.
+
+\begin{figure}[ht]
+   \centering
+    \def\svgwidth{\linewidth}
+    \incfig{svm_kernel}
+    \caption{Operação de kernel sobre os dados. A esquerda dados que não são
+    linearmente separáveis se transformam em separáveis com a projeção
+    demonstrada na figura a direita.}
+    \label{fig:svm_kernel}
+\end{figure}
+
+Desta forma, rescrevemos a função do hiperplano \ref{eq:svm_func} como
+
+ \begin{equation}
+    \label{eq:svm_kernel}
+    h(x)^T\beta + \beta_0 = 0
+\end{equation}
+
+Pela forma da equação \ref{eq:lag_svm} e \ref{eq:svm_sign} reescrevemos o
+o classificador da seguinte forma
+
+\begin{equation}
+    G(x) = \text{sign}
+    \left(\sum_{i=1}^N \alpha_i y_i \langle h(x),h(x_i)\rangle+\beta_0 \right)
+\end{equation}
+
+A literatura costuma apresentar tres escolhas populares para kernel, que são
+
+\begin{equation}
+    \begin{split}
+        \text{Polinomial:} &\quad (1+\langle x,x_i\rangle)\\
+        \text{Base Radial:} &\quad \text{exp}(-\gamma \Vert x - x_i\Vert^2)\\
+        \text{Rede Neural:} &\quad \text{tanh}(k_1\langle x,x_i\rangle+k_2)
+    \end{split}
+\end{equation}
 
 \subsection{``Não existe almoço grátis''}
 
 Vimos a viabilidade e descrevemos o projeto de alguns algoritmos, surge então a
-seguinte questão: ``E se colocássemos apenas os `bons programas', isto é, de
-alguma forma adicionar apenas aqueles de menor descrição, no espaço espaço de
-hipótese do algoritmo para ser selecionado?'' Devido ao teorema do \textit{No
-Free Lunch} \cite{wolpert1997no,wolpert1996lack} temos uma prova que tal
-algoritmo seria inconcebível, pois não é possível ter um melhor algoritmo para
-todos os casos \cite{rathmanner2011philosophical}, o que nos é apresentado
-intuitivamente pela teoria da inferência indutiva universal.
+seguinte questão: ``Para um dado problema com caracteristicas $Z$, qual desses
+algoritmos deve ser selecionado?''. Como apresentado pelo teorema do \textit{No
+Free Lunch} em \cite{wolpert1997no,wolpert1996lack}, não há uma distinção
+formal \textit{a priori} entre esses algoritmos que aponte qual é o mais
+adequado a um dado problema. Logo, métodos experimentais e estatisticos são
+aplicados nessa tarefa, como conjutos de validação, para comparar e selecionar
+algoritmos. Porém está abordagem apresenta algumas limitações dada a
+insuficiência estatistica ou viéses causados pelo método empirico.
 
-O algoritmo, e consequentemente o espaço de hipóteses $\mathcal{H}$, é
-usualmente selecionado com base em resultados empíricos. Tais avaliações são
-feitas baseadas métodos de validação, porém a escassez e o ``vazamento'' de
-dados costuma gerar o problema de sobreajuste, sendo então uma solução limitada
-ao problema. Há uma alternativa não baseada em avaliação empírica para a
-seleção de algoritmos, através do meta-aprendizado.
+Neste trabalho buscamos automatizar e diminuir problemas causados pela seleção
+empirica de algoritmos, usando informações \textit{a posteriori} do espaço de
+instâncias para essa escolha, essa abordagem também conhecida como
+meta-aprendizado.
 
 \section{Meta-Aprendizado}
 \label{sec:metalearning}

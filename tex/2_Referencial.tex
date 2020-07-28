@@ -169,7 +169,7 @@ programas geradores que se pode assumir deve ser limitada, apenas dados gerados
 de forma independente por uma distribuição estacionaria nos garante a validade
 das propriedades dos teoremas apresentados a seguir.
 
-Limitemos as funções computáveis que queremos descobrir a retângulos que
+Limitamos as funções computáveis que queremos descobrir a retângulos que
 classificam pontos em $\mathbb{R}^2$ , os quais pertencem aos conjunto de
 conceitos $\mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$ classifique
 o ponto em 1 se contido dentro do retângulo ou 0 c.c, isto é,
@@ -292,19 +292,19 @@ escolhido para a bipartição dos dados.
 \begin{algorithm}[H]
 \SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
-\KwData{Conjunto de dados D com atributos p.}
-\KwInput{B - Número de estimadores a serem construídos, m - Número de atributos
+\KwData{Conjunto de dados $D$ com atributos $p$.}
+\KwInput{$B$ - Número de estimadores a serem construídos, $m$ - Número de atributos
 nos subconjuntos.}
 \KwOutput{Classificador - Maioria dos votos de $\{T_b\}^B$.}
 \begin{enumerate}
-    \item Para b=1 até B.
+    \item Para $b=1$ até $B$.
     \begin{enumerate}
         \item Obtenha um subconjunto aleatório com repetição
-            (\textit{Bootstrap}) de D.
+            (\textit{Bootstrap}) de $D$.
         \item Construa uma árvore $T_b$ recursivamente da seguinte forma:
         \begin{enumerate}
-            \item Selecione m variáveis do conjunto p.
-            \item Selecione a melhor variável e bipartição em m.
+            \item Selecione m variáveis do conjunto $p$.
+            \item Selecione a melhor variável e bipartição em $m$.
             \item Divida o nó em dois nós filhos.
         \end{enumerate}
     \end{enumerate}
@@ -329,8 +329,35 @@ residuo de estimadores anteriores, assim esse novo estimador tem uma tarefa
 mais simples e logo, quando combinado com toda a sequência de estimadores, pode
 apresentar maior robustez no aprendizado.
 
-\subsection{Máquina de Vetores de Suporte}
+\begin{algorithm}[H]
+    \SetKwInput{KwInput}{Input}
+    \SetKwInput{KwOutput}{Output}
+    \KwData{Conjunto de dados D com atributos p.}
+    \KwInput{B - Número de estimadores a serem construídos.}
+    \KwOutput{Classificador - $f_M(x)$.}
+    \begin{enumerate}
+        \item Construa $f_0(x) = \textit{arg min}_\gamma \sum_{i=1}^N$
+        \item Para $b=1$ até $B$.
+        \begin{enumerate}
+            \item Para $i=1,2,..,N$ calcule
+                \[ r_{im} = - \left[ \frac{\partial L(y_i,f(x_i))}{\partial
+                f(x_i)} \right]_{f=f_{m-1}}\]
+            \item obtenha a árvore de regressão para os $r_{im}$ dada as
+                regiões terminais $R_{jm}, j=1,2,..,J_m$.
+            \item Para $j=1,2,..,J_m$ calcule
+                \[\gamma_{jm} = \sum_{x_i \in R_{jm}}
+                L(y_i,f_{m-1}(x_i)+\gamma)\]
+            \item Atualize $f_m(x) = f_{m-1}(x) +
+                \sum_{j=1}^{J_m} \gamma_{jm}I(x \in R_{jm})$.
+        \end{enumerate}
+        \item Retorne $\hat{f}(x) = f_M(x)$.
+    \end{enumerate}
+    \caption{Máquina de Reforço do Gradiente}
+    \label{algo:gbm}
+\end{algorithm}
 
+
+\subsection{Máquina de Vetores de Suporte}
 Máquinas de vetores de suporte são construídas em cima de duas idéias muito
 elegantes do ponto de vista teórico, classificadores de máxima margem e
 projeções vetoriais. Classificadores de máxima margem obtém um hiperplano de
@@ -361,9 +388,9 @@ com garantias de uma boa generalização \cite{vapnik2013nature}.
 Porém, uma vasta gama problemas não apresenta uma separação linear entre as
 classes, sendo necessárias duas abordagens generalizar esse algoritmo, projetar
 os dados em uma dimensão em que sejam linearmente separaveis, possívelmente uma
-dimensão infinita através do \textit{kernel trick}, e também tornar as margens
-menos restritas para se adaptarem a ruídos nos dados. Inicialmente definimos o
-hiperplano como
+dimensão infinita através do ``truque de núcleo'' (\textit{kernel trick}), e
+também tornar as margens menos restritas para se adaptarem a ruídos nos dados.
+Inicialmente definimos o hiperplano como
 
 \begin{equation}
     \label{eq:svm_func}
@@ -409,7 +436,7 @@ Figura \ref{fig:svm_kernel}.
    \centering
     \def\svgwidth{\linewidth}
     \incfig{svm_kernel}
-    \caption{Operação de kernel sobre os dados. A esquerda dados que não são
+    \caption{Operação de núcleo sobre os dados. A esquerda dados que não são
     linearmente separáveis se transformam em separáveis com a projeção
     demonstrada na figura a direita.}
     \label{fig:svm_kernel}
@@ -430,7 +457,7 @@ o classificador da seguinte forma
     \left(\sum_{i=1}^N \alpha_i y_i \langle h(x),h(x_i)\rangle+\beta_0 \right)
 \end{equation}
 
-A literatura costuma apresentar tres escolhas populares para kernel, que são
+A literatura costuma apresentar tres escolhas populares para núcleo, que são
 
 \begin{equation}
     \begin{split}
@@ -440,8 +467,13 @@ A literatura costuma apresentar tres escolhas populares para kernel, que são
     \end{split}
 \end{equation}
 
-\subsection{``Não existe almoço grátis''}
+Devido a elegância teórica desse algoritmo a sua generalização é dada em função
+da quantidade de vetores de suporte escolhidos, e embora essa projeção aumente
+a dimensionalidade dos dados, no caso do núcleo de base radial para uma
+dimensão infinita, ele ainda tem garantias de ter um baixo erro fora dos dados
+conhecidos \cite{vapnik2013nature}.
 
+\subsection{``Não existe almoço grátis''}
 Vimos a viabilidade e descrevemos o projeto de alguns algoritmos, surge então a
 seguinte questão: ``Para um dado problema com caracteristicas $Z$, qual desses
 algoritmos deve ser selecionado?''. Como apresentado pelo teorema do \textit{No

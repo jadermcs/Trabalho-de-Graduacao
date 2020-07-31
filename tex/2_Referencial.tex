@@ -17,66 +17,86 @@
 A necessidade de mecanizar tarefas humanas data desde o período clássico da
 civilização, em cerca de 350 a.C. na Grécia Antiga. Aristóteles, filosofo e
 aluno de Platão, entre diversos escritos que produziu, investigou o homem, a
-mente e a razão \cite{russell2004history}. Em seu livro \textit{Política}, um
+mente e a razão \cite{russell2004history}. Em seu livro \textit{Politiká}, um
 trabalho de ética e filosofia política, Aristóteles descreve a necessidade de
-automatizar tarefas humanas por mecanismo que obedeçam ``palavras de comando ou
-antecipação inteligente'' \cite{2013aristotle}, como forma de resolver
-problemas sociais, como a escravidão. Não apenas nesse livro, mas outros
-trabalhos de seus trabalhos foram precursores \cite{russell2016artificial} no
-desdobramento de um esforço coletivo para criar máquinas que poderiam
-reproduzir atividades humanas.
+automatizar tarefas humanas por meio de mecanismo que obedeçam ``palavras de
+comando ou antecipação inteligente'' também chamados de ``tripods''
+\cite{2013aristotle}, como forma de resolver problemas sociais, como a
+escravidão. Não apenas neste trabalho, mas muito outros trabalhos foram
+idealizadores do que futuramente se tornaria o campo de inteligência artificial
+\cite{russell2016artificial}.
 
-Uma das primeiras abordagens que poderia realizar tal feito surge muito antes,
-em cerca de 2500 a.C., onde os matemáticos babilônios descrevem uma serie de
-etapas e operações a se seguir para realizar a divisão entre dois números
-\cite{chabert1999history}, tal procedimento foi posteriormente nomeado de
-`algoritmo'.
+Embora a idealização de mecanizar tarefas tenha surgido na Grécia, uma
+abordagem prática para isso já havia sido produzida muitos anos antes, em cerca
+de 2500 a.C. Matemáticos babilônios com o objetivo de dividir grãos em
+quantidades justas entre seus pares, desenvolvem uma série de etapas e
+operações ordenadas para se seguir que ao final lhes garantiria o resultado
+almejado \cite{chabert1999history}, esse foi um dos primeiros registros de um
+conceito que hoje é nomeado `algoritmo'.
 
 Com o advento da computação e a concepção da máquina universal, o termo
 algoritmo foi adotado por esta ciência para designar instruções finitas e bem
 definidas que podem ser implementadas em um computador para resolver classes de
-problemas \cite{britannica2006algorithm}, tal abordagem remete aquela almejada
-por Aristóteles ao especificar ``palavras de comando'' que deveriam ser
-seguidas por um mecanismo autônomo.
+problemas \cite{britannica2006algorithm}, o computador moderno tendo posse
+então dessas ``palavras de comando'' irá então executar de forma autônoma até o
+fim de sua execução, muito similar aos ``tripods'' idealizados por Aristóteles.
 
-Duas alternativas computacionais emergiram de forma promissoras para a
-concepção desses mecanismos, o raciocínio, através de algoritmos de dedução, e
-a busca, através de algoritmos que percorrem árvores de possibilidades. Porém
-tais métodos apresentam limitações teóricas e práticas, como descrito em
-\cite{popper2005logic} apenas o método indutivo é incapaz de criar novo
-conhecimento, necessitando de uma abordagem ``criativa'', e do ponto de vista
-prático o raciocínio dedutivo não se apresenta como uma alternativa razoável em
-um cenário de incerteza \cite{russell2016artificial}, e os métodos de busca se
-tornam intratáveis se a complexidade do problema é muito alta
-\cite{openai2019dota,Silver2016}, é necessária então uma abordagem indutiva.
+Porém, uma simples lista de comandos não seria suficiente para que esses
+mecanismos autônomos conseguissem replicar a atuação humana em ambientes
+desconhecidos, complexos e imprevisíveis \cite{russell2016artificial}, uma
+parte fundamental da capacidade humana que permite lidar com essas lacunas é a
+inteligência. Até o presente momento, não há um consenso sobre o que é ser
+inteligente e muito menos o que é necessário para construir uma entidade
+inteligente \cite{russell2016artificial}. Um grupo de 52 especialistas listou o
+uso de ferramentas da mente como: perceber, memorizar, aprender, compreender,
+imaginar, planejar e raciocinar \cite{gottfredson1997mainstream}, porém nossa
+compreensão objetiva dessas ferramentas se aplica apenas a algumas, dentre elas
+a que tivemos grande sucesso em simular foi o raciocínio
+\cite{russell2016artificial}.
 
-Presente em diversos organismos na natureza \cite{shettleworth2001animal}, a
-aprendizagem é uma das ferramentas cognitivas que permite não necessitar de
-informações completas e permite lidar com incerteza gerando soluções quase
-ótimas aos problemas. Um exemplo do processo de aprendizado é observado em
-ratos evitando iscas envenenadas. Num primeiro momento em que ratos encontram
-comidas com aspectos ou cheiros desconhecidos, eles inicialmente irão comer
-apenas pequenas quantidades, e dependendo do resultado dessa experiência, caso
-a comida produza más sensações, a comida será associada a algo ruim e
-subsequentemente será evitada, o processo chamado ``aversão condicionada ao
-sabor'' \cite{garcia1955conditioned}.
+A principal divisão entre os tipos de raciocínio são duas, o método dedutivo e
+o método indutivo. Matemáticos, lógicos e cientistas da computação com grande
+sucesso tem conseguido desenvolver sistemas baseados no raciocínio dedutivo e
+operar sobre premissas através e regras lógicas para provas ou verificar
+teoremas, um exemplo disso são as linguagens \textit{Coq} e \textit{PROLOG}.
+Aliado a isso, algoritmos de busca permitem deduzir soluções pela verificação
+da árvore de eventos.
 
-Tal motivações criaram a terceira abordagem para máquinas operarem tarefas
-humanas, o Aprendizado de Máquina, essa que se mostrou bem sucedida em tarefas
-que as outras abordagens não apresentavam desempenho tolerável. Na próxima
-seção definimos o aprendizado em seu aspecto computacional, diferente do
-aprendizado estatístico como em \cite{friedman2001elements}, este trabalho será
-baseado nas teorias computacionais de aprendizado
-\cite{valiant1984theory,bartlett2002rademacher,gold1967language}
-com o devido formalismo e evidenciando as limitações de computabilidade.
+Porém o método indutivo apresenta limitações quanto a sua capacidade de
+descobertas. Como demonstrado por Hume \cite{hume2000enquiry} e Kant
+\cite{smith2011immanuel} certos conhecimentos não podem ser obtidos
+exclusivamente através da dedução, sendo sua obtenção apenas possível pela
+experimentação e percepão \cite{popper2005logic}, logo máquinas que pretendam
+simular o raciocínio humano devem ter a capacidade de generalizar regras gerais
+a partir de eventos singulares.
+
+% Presente em diversos organismos na natureza \cite{shettleworth2001animal}, a
+% aprendizagem é uma das ferramentas cognitivas que permite não necessitar de
+% informações completas e permite lidar com incerteza gerando soluções quase
+% ótimas aos problemas. Um exemplo do processo de aprendizado é observado em
+% ratos evitando iscas envenenadas. Num primeiro momento em que ratos encontram
+% comidas com aspectos ou cheiros desconhecidos, eles inicialmente irão comer
+% apenas pequenas quantidades, e dependendo do resultado dessa experiência, caso
+% a comida produza más sensações, a comida será associada a algo ruim e
+% subsequentemente será evitada, o processo chamado ``aversão condicionada ao
+% sabor'' \cite{garcia1955conditioned}.
+
+% Tal motivações criaram a terceira abordagem para máquinas operarem tarefas
+% humanas, o Aprendizado de Máquina, essa que se mostrou bem sucedida em tarefas
+% que as outras abordagens não apresentavam desempenho tolerável.
+Na próxima seção definimos o aprendizado em seu aspecto computacional,
+diferente do aprendizado estatístico como em \cite{friedman2001elements}, este
+trabalho será baseado nas teorias computacionais de aprendizado
+\cite{valiant1984theory,gold1967language,kearns1994introduction} evidenciando
+as limitações de computabilidade.
 
 \section{Aprendizado de Máquina}
 \label{sec:aprendizado-de-maquina}
 
 No contexto de inteligência artificial, o \textbf{Aprendizado}, ou Aprendizado
 de Máquina (AM), é o estudo e a concepção de agentes que melhoram o seu
-desempenho nas tarefas futuras de aprendizagem após fazer observações sobre o
-mundo \cite{russell2016artificial, mohri2018foundations}. Em
+desempenho nas tarefas futuras após fazer observações sobre o mundo
+\cite{russell2016artificial, mohri2018foundations}. Em
 \cite{mitchell1997machine} é formalmente definido como:
 
 \begin{definition}

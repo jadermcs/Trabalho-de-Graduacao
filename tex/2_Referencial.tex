@@ -286,7 +286,7 @@ Gini.
 
 Esse particionamento é então aplicado recursivamente até que seja atingido
 algum critério de regularização, por exemplo, o limite mínimo para $m$ ou
-definido um valor minimo para $H$.
+definido um valor mínimo para $H$.
 
 Embora árvores de decisão tenha diversas vantagens, elas tendem a sobreajustar
 aos dados, uma possível solução para isso é o uso de comitês.
@@ -431,10 +431,10 @@ A implementação detalhada deste algoritmo está apresentada pelo pseudo-códig
 
 
 \subsection{Máquina de Vetores de Suporte}
-Máquinas de vetores de suporte são construídas em cima de duas idéias muito
+Máquinas de vetores de suporte são construídas em cima de duas ideias muito
 elegantes do ponto de vista teórico, classificadores de máxima margem e
 projeções vetoriais. Classificadores de máxima margem obtém um hiperplano de
-solução unica tal que a margem entre esse hiperplano e os pontos de duas
+solução única tal que a margem entre esse hiperplano e os pontos de duas
 classes, se linearmente separáveis, seja máximo, resultando em um hiperplano
 com garantias de uma boa generalização \cite{vapnik2013nature}.
 
@@ -548,17 +548,17 @@ conhecidos \cite{vapnik2013nature}.
 
 \subsection{``Não existe almoço grátis''}
 Vimos a viabilidade e descrevemos o projeto de alguns algoritmos, surge então a
-seguinte questão: ``Para um dado problema com caracteristicas $Z$, qual desses
+seguinte questão: ``Para um dado problema com características $Z$, qual desses
 algoritmos deve ser selecionado?''. Como apresentado pelo teorema do \textit{No
 Free Lunch} em \cite{wolpert1997no,wolpert1996lack}, não há uma distinção
-formal \textit{a priori} entre esses algoritmos que aponte qual é o mais
-adequado a um dado problema. Logo, métodos experimentais e estatisticos são
-aplicados nessa tarefa, como conjutos de validação, para comparar e selecionar
+formal, \textit{a priori}, entre esses algoritmos que aponte qual é o mais
+adequado a um dado problema, logo, métodos experimentais e estatísticos são
+aplicados nessa tarefa, como conjuntos de validação, para comparar e selecionar
 algoritmos. Porém está abordagem apresenta algumas limitações dada a
-insuficiência estatistica ou viéses causados pelo método empirico.
+insuficiência estatística ou vieses causados pelo método empírico.
 
 Neste trabalho buscamos automatizar e diminuir problemas causados pela seleção
-empirica de algoritmos, usando informações \textit{a posteriori} do espaço de
+empírica de algoritmos, usando informações \textit{a posteriori} do espaço de
 instâncias para essa escolha, essa abordagem também conhecida como
 meta-aprendizado.
 

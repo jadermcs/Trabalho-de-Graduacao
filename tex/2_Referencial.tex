@@ -239,12 +239,12 @@ $t_m$ bi particionando os dados em $\theta = (j,t_m)$ como mostrado em
     \label{eq:splitc}
 \end{equation}
 
-De tal forma a minimizar a equação \ref{eq:treegreed} sobre a função de
+De tal forma a minimizar $L$ sobre a função de
 impureza $H$.
 
 \begin{equation}
-    \text{argmin}_{\theta} \frac{n_{\text{left}}}{N_m} H(Q_{\text{left}}(\theta)) +
-    \frac{n_{\text{right}}}{N_m} H(Q_{\text{right}}(\theta))
+    \underset{\theta}{\text{arg min}} \left[ L(\theta) =  \frac{n_{\text{left}}}{N_m} H(Q_{\text{left}}(\theta)) +
+    \frac{n_{\text{right}}}{N_m} H(Q_{\text{right}}(\theta)) \right]
     \label{eq:treegreed}
 \end{equation}
 
@@ -289,7 +289,7 @@ espaço de busca por bipartições da árvore, a cada novo nó da árvore que es
 sendo construída, apenas um subconjunto aleatório dos atributos pode ser
 escolhido para a bipartição dos dados.
 
-\begin{algorithm}[H]
+\begin{algorithm}[ht]
 \SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
 \KwData{Conjunto de dados $D$ com atributos $p$.}
@@ -321,23 +321,76 @@ apresentado o pseudo-código da Floresta Aleatória.
 
 \subsection{Máquina de Reforço do Gradiente}
 
-O algoritmo de Floresta Aleatória nos dá uma idéia do poder que temos ao
+O algoritmo de Floresta Aleatória nos dá uma ideia do poder que temos ao
 combinar algoritmos simples, também chamado \textit{weak learner}, em
 algoritmos mais robustos. Uma outra alternativa a combinação de modelos é o
 Reforço, ou \textit{Boosting}, esse consiste em criar estimadores a partir do
-residuo de estimadores anteriores, assim esse novo estimador tem uma tarefa
+resíduo de estimadores anteriores, assim esse novo estimador tem uma tarefa
 mais simples e logo, quando combinado com toda a sequência de estimadores, pode
 apresentar maior robustez no aprendizado.
 
-\begin{algorithm}[H]
+Demonstramos anteriormente como árvores CART são induzidas, sendo $R_j,j=1,2,..J$ as regiões particionadas pela árvore, se $x \in R_j \implies f(x) = \gamma_j$, que no caso de classificação $\gamma_j$ é o valor modal daquela região. Logo podemos definir formalmente como
+
+\begin{equation}
+    T(x;\Theta) = \sum_{j=1}^J \gamma_j I(x \in R_j),
+\end{equation}
+
+sendo $\Theta = \{R_j,\gamma_j\}_1^J$ parâmetros obtidos minimizando o risco empírico dado por
+
+\begin{equation}
+    \hat{\Theta} = \underset{\Theta}{\text{arg min}}
+    \sum_{i=1}^N L(y_i,T(x;\Theta)).
+\end{equation}
+
+Logo, as árvores de reforço são dadas por
+
+\begin{equation}
+\label{eq:tree_boost}
+    f_M(x) = \sum_{m=1}^M T(x;\Theta_m),
+\end{equation}
+
+induzidas sequencialmente resolvendo
+
+\begin{equation}
+    \hat{\Theta}_m = \underset{\Theta_m}{\text{arg min}}
+    \sum_{i=1}^N L(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m)),
+\end{equation}
+
+logo, cada árvore deve aprender apenas o resíduo do erro da árvore anterior, isto é, a árvore $m$ deve predizer $y_i - f_{m-1}(x_i)$. Porém o método descrito aqui embora seja intuitivo e correto, é ineficiente, sendo preferível sua aproximação que pode ser obtida em um único passo e não sequencialmente.
+
+Definimos a função de custo por
+
+\begin{equation}
+    L(f) = \sum_{i=1}^N L(y_i,f(x_i)),
+\end{equation}
+
+portanto, queremos minimizar $L(f)$ em função de $f$, onde $f$ é descrita na equação \ref{eq:tree_boost}. Logo, sendo $\boldsymbol{f}$ as funções que aproximam $f(x_i)$ em cada ponto $x_i$ de $N$, fazemos
+\begin{equation}
+\label{eq:step_boost}
+\hat{\boldsymbol{f}} = \underset{\boldsymbol{f}}{\text{arg min }}L(\boldsymbol{f}).
+\end{equation}
+
+Usamos então o método do gradiente para otimizar a equação \ref{eq:step_boost}, sendo $\rho$ a taxa de aprendizado atualizamos
+\begin{equation}
+    \boldsymbol{f}_m = \boldsymbol{f}_{m-1} - \rho_m \boldsymbol{g}_m,
+\end{equation}
+onde os componentes do gradiente $\boldsymbol{g}_m$ são dados por
+\begin{equation}
+    g_{im} = \left[ \frac{\partial L(y_i,f(x_i))}{\partial
+                f(x_i)} \right]_{f(x_i)=f_{m-1}(x_i)}.
+\end{equation}
+
+A implementação detalhada deste algoritmo está apresentada pelo pseudo-código do Algoritmo \ref{algo:gbm}.
+
+\begin{algorithm}[ht]
     \SetKwInput{KwInput}{Input}
     \SetKwInput{KwOutput}{Output}
     \KwData{Conjunto de dados D com atributos p.}
-    \KwInput{B - Número de estimadores a serem construídos.}
+    \KwInput{M - Número de estimadores a serem construídos.}
     \KwOutput{Classificador - $f_M(x)$.}
     \begin{enumerate}
         \item Construa $f_0(x) = \textit{arg min}_\gamma \sum_{i=1}^N$
-        \item Para $b=1$ até $B$.
+        \item Para $m=1$ até $M$.
         \begin{enumerate}
             \item Para $i=1,2,..,N$ calcule
                 \[ r_{im} = - \left[ \frac{\partial L(y_i,f(x_i))}{\partial

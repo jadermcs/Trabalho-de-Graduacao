@@ -3,10 +3,11 @@ o progresso tecnológico \cite{dean2008mapreduce,atzori2010internet}, sistemas
 informáticos estão presentes no dia-a-dia das pessoas nas mais diversas formas,
 \textit{smartphones} e seus diversos aplicativos, \textit{smart things} (TVs,
 relógios, etc.), sensores, computadores de bordo e muitos outros dispositivos
-são exemplos dessa tecnologia. Tais sistemas além estarem conectado a redes
+são exemplos dessa tecnologia. Tais sistemas por estarem conectado a redes
 internas e externas tem a capacidade de consumir e gerar um grande volume de
-dados. Com isso uma quantidade massiva de dados se tornou disponível e esse
-fenômeno ganhou um nome, ``\textit{Big Data}'' \cite{mcafee2012big}.
+dados. Esse fenômeno de geração e armazenamento de uma quantidade massiva de
+dados nos ultimos anos recebeu um nome, ``\textit{Big Data}''
+\cite{mcafee2012big}.
 
 Essa grande quantidade de informação se tornou um dos bens mais valiosos do
 mundo moderno \cite{economist2017world}, e na era do \textit{Big Data},
@@ -18,10 +19,9 @@ usuários \cite{tarnoff2018big, finger2014data}, fenômeno só possível devido 
 nesse volume, mesmo sem qualquer supervisão e filtragem no processo gerador dos
 dados, essa quantidade massiva e complexa de dados, tornou viável muitas
 tarefas de inteligência artificial de grande valor, como recomendações de
-conteúdo (filmes, músicas, livros, etc.) ou filtrar conteúdos customizados,
-passaram a apresentar um desempenho desejável.
+conteúdo, passaram a apresentar um desempenho desejável.
 
-Porém com novas possibilidades vieram também novos desafios, grande parte dos
+Porém, com novas possibilidades vieram também novos desafios, grande parte dos
 sistemas computacionais que eram baseados no uso de memoria RAM para o
 processamento se tornaram inviáveis para essa industria que produz dados na
 escala de \textit{Petabytes} \cite{dean2008mapreduce}, logo, foi necessário a
@@ -43,44 +43,42 @@ atividades realizadas com uso de dispositivos \textit{smart}, são exemplos de
 tecnologias que geram dados em um fluxo contínuo a uma alta frequência
 \cite{gama2004learning}. Nesse novo contexto o modelo usual, colunar e
 estruturado, não se apresentou como uma forma eficaz de armazenar e manipular
-esse dados em tempo real \cite{gama2007learning}, com isso, uma nova abordagem
+esses dados em tempo real \cite{gama2007learning}, com isso, uma nova abordagem
 foi proposta. Fluxos de dados, ou \textit{Data Streams}, são conjuntos de dados
 gerados em tempo real de forma continua a frequências variáveis. Do ponto de
 vista de engenharia, pela natureza dos dados, há imposições limitantes quanto
 a leitura e manipulação, o que torna os processos de mineração para esses
 ambientes uma tarefa não trivial.
 
-
-
-Uma das abordagens para extração de informação que tem sobressaído aliado ao
-\textit{Big Data} é o Aprendizado de Máquina (AM). O AM é o campo da
-inteligência artificial que estuda métodos para a extração de padrões dos
-dados, para que esse conhecimento seja aplicado em tarefas futuras
-\cite{mitchell1997machine,friedman2001elements}.
+Não só o processamento e armazenamento necessitou de novas abordagens, como
+também tecnicas de extração (ou mineração) de informação precisaram ser
+readaptadas a esse novo modelo. Uma das abordagens para extração de informação
+que tem sobressaído aliado ao \textit{Big Data} é o Aprendizado de Máquina
+(AM). O AM é o campo da inteligência artificial que estuda métodos para a
+extração de padrões dos dados, para que esse conhecimento seja aplicado em
+tarefas futuras \cite{mitchell1997machine,friedman2001elements}.
 
 Como todo método indutivo, algoritmos tradicionais de AM assumem duas premissas
 que devem ser satisfeitas para que funcionem corretamente: ($i$) o futuro deve
 se comportar como o passado e ($ii$) eventos futuros devem ser independentes de
 eventos passado \cite{vapnik2013nature}. Entretanto, em um fluxo de dados
-continuo (em inglês, \textit{Data Stream}), a distribuição que gera os dados
-usualmente está mudando com o tempo e dependências temporais podem ocorrer.
-Logo, essas premissas podem não se manter e a performance dos modelos induzidos
-podem perecer com o passar do tempo, causando uma má experiência aos usuários
-desses sistemas  \cite{gama2007learning, Johansson2014}.
+continuo, a distribuição que gera os dados usualmente está mudando com o tempo
+e dependências temporais podem ocorrer.  Logo, essas premissas podem não se
+manter e a performance dos modelos induzidos podem perecer com o passar do
+tempo, causando uma má experiência aos usuários desses sistemas
+\cite{gama2007learning, Johansson2014}.
 
 Diversos métodos foram desenvolvidos para lidar em ambientes com mudanças
 temporais, como detecção de mudança de conceito
 \cite{klinkenberg2000detecting}, retreino periódico de algoritmo
 \cite{bifet2007learning} ou novas abordagens de algoritmos, especialmente
-projetados para esse contexto \cite{zang2014comparative}.
-
-Por exemplo, alguns métodos de detecção de mudança de conceito
-\cite{gama2010knowledge} são baseados em alarmes que disparam quando a
-diferença da performance do modelo atual e do melhor modelo até então é maior
-que um dado limiar. Outros métodos, como a indução periódica de modelos, podem
-não ser suficientes para resolver esses problemas, já que o espaço de hipótese
-fixado do algoritmo pode não mais ser apropriado ao problema
-\cite{rossi2014metastream}.
+projetados para esse contexto \cite{zang2014comparative}. Por exemplo, alguns
+métodos de detecção de mudança de conceito \cite{gama2010knowledge} são
+baseados em alarmes que disparam quando a diferença da performance do modelo
+atual e do melhor modelo até então é maior que um dado limiar. Outros métodos,
+como a indução periódica de modelos, podem não ser suficientes para resolver
+esses problemas, já que o espaço de hipótese fixado do algoritmo pode não mais
+ser apropriado ao problema \cite{rossi2014metastream}.
 
 Meta-Aprendizado (MtA) é uma técnica proeminente para resolver essas limitações
 através da detecção de mudança de conceito e recomendação de algoritmos para

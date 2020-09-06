@@ -62,33 +62,29 @@ teoremas, um exemplo disso são as linguagens \textit{Coq} e \textit{PROLOG}.
 Aliado a isso, algoritmos de busca permitem deduzir soluções pela verificação
 da árvore de eventos.
 
-Porém o método indutivo apresenta limitações quanto a sua capacidade de
-descobertas. Como demonstrado por Hume \cite{hume2000enquiry} e Kant
+Porém, o método indutivo apresenta limitações quanto a sua capacidade de
+descobertas. Como discutido por Hume \cite{hume2000enquiry} e Kant
 \cite{smith2011immanuel} certos conhecimentos não podem ser obtidos
-exclusivamente através da dedução, sendo sua obtenção apenas possível pela
-experimentação e percepão \cite{popper2005logic}, logo máquinas que pretendam
-simular o raciocínio humano devem ter a capacidade de generalizar regras gerais
+exclusivamente através da dedução, o juízo analítico, sendo então necessário
+o uso da percepção e experimentação \cite{popper2005logic}, o juízo sintético,
+logo máquinas que pretendam simular o raciocínio humano devem ter a capacidade
+de desempenhar esses dois tipos de juízo, o raciocínio dedutivo, regras restritas a
+partir de regras gerais, e o raciocínio indutivo, que possibilita generalizar regras
 a partir de eventos singulares.
 
-% Presente em diversos organismos na natureza \cite{shettleworth2001animal}, a
-% aprendizagem é uma das ferramentas cognitivas que permite não necessitar de
-% informações completas e permite lidar com incerteza gerando soluções quase
-% ótimas aos problemas. Um exemplo do processo de aprendizado é observado em
-% ratos evitando iscas envenenadas. Num primeiro momento em que ratos encontram
-% comidas com aspectos ou cheiros desconhecidos, eles inicialmente irão comer
-% apenas pequenas quantidades, e dependendo do resultado dessa experiência, caso
-% a comida produza más sensações, a comida será associada a algo ruim e
-% subsequentemente será evitada, o processo chamado ``aversão condicionada ao
-% sabor'' \cite{garcia1955conditioned}.
+O aprendizado, uma forma geral de indução, está presente nas mais diversas formas de
+vida \cite{shettleworth2001animal}, mas especialmente nos humanos, pela língua e cultura,
+nos permitiu progredir em ritmos acelerados na escala de inteligência e a manipular
+o ambiente a nossa volta de tal forma que possamos superar os objetivos básicos de
+um ser vivo, crescer, se alimentar e reproduzir, em busca de novos de maior complexidade,
+como colonizar novos planetas \cite{musk2017making}. Logo, o aprendizado se
+apresenta como uma abordagem natural para nós humanos ``inserirmos'' inteligência nas
+máquinas.
 
-% Tal motivações criaram a terceira abordagem para máquinas operarem tarefas
-% humanas, o Aprendizado de Máquina, essa que se mostrou bem sucedida em tarefas
-% que as outras abordagens não apresentavam desempenho tolerável.
-Na próxima seção definimos o aprendizado em seu aspecto computacional,
-diferente do aprendizado estatístico como em \cite{friedman2001elements}, este
-trabalho será baseado nas teorias computacionais de aprendizado
-\cite{valiant1984theory,gold1967language,kearns1994introduction} evidenciando
-as limitações de computabilidade.
+Na próxima seção definimos uma possível formalização para o aprendizado e motivamos como
+obter isso por meios computacionais. Diferente do aprendizado estatístico como em \cite{friedman2001elements}, este trabalho será baseado nas teorias computacionais de
+aprendizado como apresentadas em
+\cite{valiant1984theory,gold1967language,kearns1994introduction}.
 
 \section{Aprendizado de Máquina}
 \label{sec:aprendizado-de-maquina}
@@ -96,8 +92,10 @@ as limitações de computabilidade.
 No contexto de inteligência artificial, o \textbf{Aprendizado}, ou Aprendizado
 de Máquina (AM), é o estudo e a concepção de agentes que melhoram o seu
 desempenho nas tarefas futuras após fazer observações sobre o mundo
-\cite{russell2016artificial, mohri2018foundations}. Em
-\cite{mitchell1997machine} é formalmente definido como:
+\cite{russell2016artificial, mohri2018foundations}. Um dos modelos mais adotados
+para descrever e especificar a tarefa de aprendizado por um computador é
+descrito formalmente em \cite{mitchell1997machine}, este apresenta da seguinte
+forma:
 
 \begin{definition}
 Um programa de computador (agente), \textit{aprende} de uma experiência
@@ -140,7 +138,7 @@ descrito aqui pode ser estendido para mais de duas classes com métodos
 multi classe \cite{abu2012learning}.} \cite{goodfellow2016deep,
 mohri2018foundations}.
 
-O processo indutivo descrito anteriormente aparenta ser uma tarefa fácil, porém
+O processo indutivo descrito anteriormente não é uma tarefa fácil,
 para um número finitos de exemplos existem infinitas funções ($f_c$) que
 interpolam perfeitamente todos esses
 pontos\cite{bishop2006pattern,abu2012learning}, entretanto, para que se tenha
@@ -151,10 +149,16 @@ o que nos leva a pergunta: ``qual dessas funções deve ser escolhida?''
 
 Um princípio que pode ser adotado nessa escolha, é o chamado \textit{"Navalha
 de Ockham"} \cite{blumer1987occam}, ele diz que para duas hipóteses de igual
-poder explicativo, é preferível escolher a \textit{mais simples}. No inicio do
-desenvolvimento de técnicas de inferência indutiva, não havia uma definição
-formal do que seria uma hipótese ``mais simples'', em 1964 com o trabalho de
-Solomonoff da teoria de inferência indutiva universal
+poder explicativo, é preferível escolher a \textit{mais simples}. Para o caso
+da escolha entre polinômios, isto é, funções da forma
+\[f(x) = a_0x^n+a_2x^{n-1}+...+a_n,\]
+essa é uma tarefa fácil, já que podemos compará-los em complexidade pelo
+polinômio de maior grau, porém estendendo essa tarefa para qualquer classe de
+funções, essa deixa de ser uma tarefa simples.
+
+No inicio do desenvolvimento de técnicas de inferência indutiva, não havia uma
+definição formal do que seria uma hipótese ``mais simples'', em 1964 com o
+trabalho de Solomonoff da teoria de inferência indutiva universal
 \cite{solomonoff1964formal}, é apresentada uma definição formal para o que
 seria esse principio: a MT de menor comprimento que computa tal observação,
 isso é, a $f_c$ com menor complexidade de Kolmogorov. Esse sistema indutivo do
@@ -179,10 +183,10 @@ efetivos poderiam escolher os programas de menor descrição em seu respectivo
 $\mathcal{H}$ \cite{rathmanner2011philosophical}.
 
 Embora não exista uma máquina de Turing (MT) que resolva o caso geral, a teoria
-Provavelmente Aproximadamente Correto de aprendizado nos dá a garantias da
-existência de máquinas que resolvam em tempo polinomial, isto é, para alguma
-amostra de tamanho $n$, existe uma MT que com tempo $O(n^k)$ para algum $k \in
-\mathbb{N}$, encontra uma MT $c$ que mapeia
+Provavelmente Aproximadamente Correto (PAC) de aprendizado nos dá garantias da
+existência de máquinas que encontrem uma função aproximada em tempo polinomial,
+isto é, para alguma amostra de tamanho $n$, existe uma MT que com tempo $O(n^k)$
+para algum $k \in \mathbb{N}$, encontra uma MT $c$ que mapeia
 $c:\mathcal{X}\rightarrow\mathcal{Y}$, de tal forma que essa MT se aproxime da
 real função geradora $f_c$ com alta probabilidade. Para isso a classe de
 programas geradores que se pode assumir deve ser limitada, apenas dados gerados
@@ -191,14 +195,67 @@ das propriedades dos teoremas apresentados a seguir.
 
 Limitamos as funções computáveis que queremos descobrir a retângulos que
 classificam pontos em $\mathbb{R}^2$ , os quais pertencem aos conjunto de
-conceitos $\mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$ classifique
-o ponto em 1 se contido dentro do retângulo ou 0 c.c, isto é,
+conceitos $c \in \mathcal{C}$. Seja um retângulo $c$ de tal forma que $c$
+classifique o ponto em 1 se contido dentro do retângulo ou 0, c.c, isto é,
 $c:\mathcal{X}\rightarrow\mathcal{Y}$, sendo $\mathcal{X} \in \mathbb{R}^2$, as
 coordenadas no plano cartesiano e $\mathcal{Y} \in \{0,1\}$, a classe ao qual
 aquele ponto é atribuída. O algoritmo deve conter um espaço de hipóteses fixo
 $\mathcal{H}$ que não necessariamente coincida com $\mathcal{C}$ e obter
 amostras $S=(X_1,X_2,...,X_m)$ obtidas da distribuição $\mathcal{D}$, esta
-i.i.d. (independente e identicamente distribuído) como descrito anteriormente.
+i.i.d. (independente e identicamente distribuído) como descrito anteriormente,
+junto a isso as respectivas classes ($c(X_1),c(X_2),..,c(X_m)$), isto é, está
+ou não contido no retângulo.
+
+O objetivo é então usar os exemplos em S para selecionar uma $h \in \mathcal{H}$
+que tenha um baixo erro de generalização a respeito do conceito $c$. O erro de
+generalização da hipótese $h$, também chamado de risco, é da por $R(h)$ da
+seguinte forma,
+
+\begin{equation}
+    R(h) = \underset{x\sim\mathcal{D}}{\mathbb{P}}[h(x) \neq c(x)] = 
+    \underset{x\sim\mathcal{D}}{\mathbb{E}}[1_{h(x) \neq c(x)}],
+\end{equation}
+
+onde $1_\omega$ é a função indicadora do evento $\omega$ \cite{mohri2018foundations}.
+
+Embora o erro real não seja mensurável, já que a distribuição $\mathcal{D}$ e função
+$c$ são inaccessíveis para essa máquina, podemos calcular o erro empírico. Dado a
+amostra $S$ definida anteriormente, o risco empírico é calculado por 
+
+\begin{equation}
+    \Hat{R}_S(h) = \frac{1}{m} \sum_{i=1}^m 1_{h(x) \neq c(x)}.
+\end{equation}
+Ou seja, o erro empírico de $h$ é o erro médio na amostra $S$, porém, para um $m$
+suficientemente grande e uma distribuição i.i.d, o valor esperado de $\Hat{R}$
+se aproxima de $R$.
+
+Definimos agora o aprendizado PAC. Seja $n$ um numero de tal forma que qualquer
+representação de $X \in \mathcal{X}$ seja no máximo $O(n)$ e representado por
+$size(c)$ o custo máximo da representação de uma $f_c$, ou seja, complexidade de
+Kolmogorov de $c \in \mathcal{C}$. Por exemplo, $X$ pode ser uma sequência de bits
+representando $R_c^m$, de tal forma que essa sequência tenha $O(n)$. Adicionalmente,
+seja $h_S$ a hipótese obtida pela MT $\mathcal{A}$ após receber uma amostra $S$.
+
+\begin{definition}
+Uma classe de conceitos $\mathcal{C}$ é dita PAC-aprendível se existe uma MT $\mathcal{A}$
+e uma função polinomial $poly(.,.,.,.)$ de tal forma para que um dado $\epsilon > 0$ e
+um $\delta > 0$. para todas as distribuições $\mathcal{D}$ sobre $\mathcal{X}$ e para
+qualquer conceito alvo $c \in \mathcal{C}$, o seguinte é satisfeito, para qualquer amostra
+de tamanho $m \geq poly(1/\epsilon, 1/\delta, n, size(c))$: 
+\begin{equation}
+\underset{S\sim\mathcal{D}^m}{\mathbb{P}}[R(h_S)\leq\epsilon]\geq 1-\delta
+\end{equation}
+Se $\mathcal{A}$ opera em $poly(1/\epsilon, 1/\delta, n, size(c))$, então $\mathcal{C}$
+é dito ser eficientemente PAC-aprendível. Quando tal MT $\mathcal{A}$ existe, é chamado um
+algoritmo PAC-aprendível para $\mathcal{C}$.
+\end{definition}
+
+Logo, dizemos que uma classe de conceitos $\mathcal{C}$ é PAC-aprendível, se a hipótese
+retornada pela MT aprendiz, após observar um número de pontos polinomial em relação a
+$1/\epsilon$ e $1/\delta$ é aproximadamente correto, isto é, tem um erro no máximo
+$\epsilon$, com alta probabilidade, pelo menos $1-\delta$. Ou seja, sendo $1-\delta$ a
+confiança e $1-\epsilon$ a acurácia, é definido que $h$ terá um custo computacional
+polinomial em razão desses fatores.
 
 \textcolor{red}{falar do pac learning, np-complexidade}
 
@@ -291,7 +348,7 @@ definido um valor mínimo para $H$.
 Embora árvores de decisão tenha diversas vantagens, elas tendem a sobreajustar
 aos dados, uma possível solução para isso é o uso de comitês.
 
-\subsection{Floresta Aleatória}
+\subsection{Floresta Aleatória (RF)}
 
 Árvores de decisão podem ``decorar'' os dados de treino, não generalizando para
 casos desconhecidos, o chamado sobreajuste. O \textit{Bagging}, uma técnica de
@@ -337,7 +394,7 @@ nos subconjuntos.}
 Essa limitação garante que as árvores de entropia máxima não possam ser sempre
 geradas, diminuindo a correlação entre as árvores e, portanto, melhorando a
 capacidade de generalização desse estimador. No Algoritmo \ref{algo:rf} é
-apresentado o pseudo-código da Floresta Aleatória.
+apresentado o pseudo-código da Floresta Aleatória para a indução de um modelo.
 
 \subsection{Máquina de Reforço do Gradiente}
 
@@ -430,7 +487,7 @@ A implementação detalhada deste algoritmo está apresentada pelo pseudo-códig
 \end{algorithm}
 
 
-\subsection{Máquina de Vetores de Suporte}
+\subsection{Máquina de Vetores de Suporte (SVM)}
 Máquinas de vetores de suporte são construídas em cima de duas ideias muito
 elegantes do ponto de vista teórico, classificadores de máxima margem e
 projeções vetoriais. Classificadores de máxima margem obtém um hiperplano de
@@ -564,6 +621,7 @@ meta-aprendizado.
 
 \section{Meta-Aprendizado}
 \label{sec:metalearning}
+
 O problema de seleção de algoritmos foi inicialmente observado por J. R. Rice
 (1976) \cite{Rice1976} com o principal objetivo de prever o melhor algoritmo
 para resolver um dado problema quando houver mais de um algoritmo que resolva
@@ -593,11 +651,18 @@ meta-atributos ($F$) usados para descrever propriedades gerais dos conjuntos de
 dados. Esses meta-atributos devem ser capaz de prover evidências sobre
 performance futuro dos algoritmos em $A$ \cite{Soares2001, Reif2012} e
 discriminar, com baixo custo computacional, a performance de um grupo de
-algoritmos. Os principais meta-atributos usados na literatura de MtA podem ser
-divididos em cinco grupos: Gerais, Estatísticos, de Teoria da Informação,
-Baseados em Modelo e de Landmarkings.
+algoritmos. Formalmente em \cite{Rivolli2018} essa caracterização é descrita da seguinte forma:
+Seja $D \in \mathcal{D}$ um conjunto de dados, $m:D\rightarrow\mathbb{R}^n$ uma medida de caracterização, $\sigma:\mathbb{R}^{n'}\rightarrow\mathbb{R}^n$ uma função de sumarização.
+Ambas $m$ e $\sigma$ tem hiperparametros associados, $h_m$ e $h_\sigma$. Logo, um meta-atributo
+$f:D\rightarrow\mathbb{R}^n$ para um dado conjunto de dados $D$ é
 
-Os Gerais podem ser facilmente extraídos dos dados \cite{Reif2014}, com baixo
+\begin{equation}
+    f\big(D\big) = \sigma\big(m(D,h_m), h_\sigma\big).
+\end{equation}
+
+Os principais meta-atributos usados na literatura de MtA podem ser
+divididos em cinco grupos: Gerais, Estatísticos, de Teoria da Informação,
+Baseados em Modelo e de Landmarkings. Os Gerais podem ser facilmente extraídos dos dados \cite{Reif2014}, com baixo
 custo computacional \cite{Reif2012}.
 Os meta-atributos estatísticos capturam os indicadores principais sobre
 localização e distribuição dos dados, tais como média, desvio padrão,
@@ -775,167 +840,4 @@ Esses problemas podem ser reduzidos quando se usa detectores de mudança baseado
 %     maior que a quantidade de meta-dados ou ocorrerá sobre-ajuste aos dados.
 % \end{itemize}
 \textcolor{red}{falar do \cite{talagala2018meta}}
-
-\section{Metastream}
-\label{sec:metastream}
-
-
-Em ambientes de fluxos de dados, o espaço de instância de problemas é composto
-por apenas um problema $p$ enquanto os meta-atributos $F$ são extraídos dos
-dados de cada janela temporal para compor o meta-exemplo.
-\textcolor{red}{falar sobre custo O(N2) mas no caso de fluxos de dados deve ser
-um tempo menor do que o processamento de um batch da fila pois se não fila
-cresceria infinitamente}
-É importante que o processo de extração dos meta-atributos tenha baixo custo
-computacional e alto grau de informação.
-Além disso, a  performance desses algoritmos $A$ são obtidas periodicamente,
-usualmente para cada janela deslizante.
-Portanto, o algoritmo atual é substituído logo que o meta-modelo prediz que um
-algoritmo diferente é mais adequado para os exemplos da próxima janela
-deslizante.
-Essa é uma abordagem padrão na literatura de MtA em fluxos de dados
-\cite{read2012batch, vanrijn2014algorithm, Anderson2019}.
-
-% Nesse trabalho, é apresentado um método baseado em MtA que segue o framework MetaStream \cite{rossi2014metastream}.
-% A ideia básica é tentar selecionar o melhor algoritmo para ambientes que mudam com o tempo.
-% Para tal ambiente, o MetaStream regularmente induz um meta-classificador capaz de mapear as características extraídas de dados passados e os que estão chegando à performance dos classificadores nesses dados.
-% Diferente de trabalhos anteriores, um conjunto de meta-atributos mais inovadores baseado em A. Rivolli et al. (2018) \cite{Rivolli2018} é aplicado e uma abordagem de aprendizado incremental no nível meta é aplicada usando o LightGBM \cite{ke2017lightgbm}.
-
-A literatura apresenta alternativas a seleção de algoritmos (ou modelos)
-baseado em MtA para mudança de conceito. Um dos primeiros a apresentar é R.
-Klinkenberg (2005) \cite{klinkenberg2005}, onde características obtidas do
-processo de aprendizado em si, no caso o tamanho das janelas deslizantes, foram
-usadas para induzir meta-modelos.
-Uma abordagem diferente foi investigada por J. Gama and P. Kosina (2014)
-\cite{gama2014} e R. Anderson et al. (2019) \cite{Anderson2019}
-reusando modelos previamente aprendidos mas usando o mesmo algoritmo para
-induzir esses modelos no fluxo de dados. Uma terceira alternativa é dada por J.
-N. van Rijn et al. (2018) \cite{VanRijn2018}, onde é usado conjuntos de
-modelos, tendo um alto custo computacional para induzir modelos para cada
-algoritmo e manter os pesos atualizados.
-
-Em seguida, é apresentado o MetaStream baseado no trabalho de A. L. D. Rossi et
-al. (2014) \cite{rossi2014metastream}, que tem fases ``offline'' e ``online''.
-A fase offline is projetada para escolha de hiper-parâmetros, validação e
-treinamento e geração dos dados em lote.
-A fase online age no ambiente dinâmico, recomendando um algoritmo para uma dada
-janela de dados. Ambas as fases são baseadas em sistemas de recomendação de
-MtA.
-
-
-\subsection{Fase Offline}
-\label{subsubsec:offline}
-Essa fase se inicia aguardando o fluxo de dados gerar um lote de tamanho
-razoável para indução e seleção de modelos base, com esse lote em mãos, é
-realizada uma validação cruzada \textit{k-fold} para estimar os
-hiper-parâmetros dos algoritmos base, aqui assumindo que tais hiper-parâmetros
-serão os melhores para os eventos futuros.
-Após isso, em um configuração de janelas deslizantes, como mostrado na Figura
-\ref{fig:ms_diag0_off}, uma janela $\omega_{b1}$ é usada para induzir modelos
-com os algoritmos de nível base e também os meta-atributos $x^m$ também são
-extraídos dessa janela.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{ms_diag0_off}
-    \caption{Extração de meta-atributos da janela $\omega_b$ e obtenção de
-    rotulo da janela $\eta_b$.}
-    \label{fig:ms_diag0_off}
-\end{figure}
-
-Em seguida, os modelos induzidos são avaliados nos exemplos da janela
-$\eta_{b1}$, onde o algoritmo que produziu o modelo de melhor performance
-preditiva é definido como rótulo de $y^m$. Esse processo gera o primeiro
-meta-exemplo. O mesmo processo é aplicado continuamente por $N$ passos, onde
-$N$ é o número mínimo de instâncias para induzir um modelo consistente para
-gerar os meta-dados iniciais. Esses $N$ meta-exemplos serão os primeiros dados
-que serão usados para induzir modelos na fase online.
-
-\subsection{Fase Online}
-\label{subsec:online}
-
-Na fase online, o \textit{framework} recebendo um contínuo fluxo de dados.
-Inicialmente, ele recebe um vetor de atributos $\boldsymbol{x}_b =
-(x_1,...,x_p)$, e após algum atraso, o atributo rótulo $y_b \in \{0,1,..,k\}$
-para classificação, onde $k$ é o número de classes ou $y_b \in \rm{I\!R}$ para
-regressão.
-
-A Figura \ref{fig:ms_diagram0} mostra um dado momento $t$ na fase online. Ele
-tem uma janela de tamanho fixo $\omega_b$ que será usado para induzir um
-modelo, uma janela de tamanho fixo $\eta_b$ onde o modelo induzido em
-$\omega_b$ será avaliado assim que o rótulo referente for descoberto, um
-tamanho $\gamma_b$ que é o atraso em observar o rótulo para os exemplos na
-janela $\eta_b$ e uma janela de tamanho variável $\lambda_b$ de exemplos
-aguardando serem processados.
-Quando $\gamma_b$ tem o mesmo tamanho que $\eta_b$, isto é, todos os rótulos de
-$\eta_b$ foram obtidos, a janela $\omega_b$ é deslizada $\eta_b$ instâncias
-para a direita e um novo modelo é induzido nessa janela.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{metastream_diag0}
-    \caption{Discretização de janelas no nível base do fluxo de dados.}
-    \label{fig:ms_diagram0}
-\end{figure}
-
-MtA entra em ação no segundo nível de processamento, nomeado nível meta. Como
-mostrado na Figura \ref{fig:ms_diagram1}, os meta-atributos são extraídos da
-janela $\omega_b$ e geram o meta-exemplo sem o rótulo que é mantido para
-atualização posterior.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{metastream_diag1}
-    \caption{Extração de meta-atributos das janelas  $\omega_b$ e $\eta_b$ no nível meta.}
-    \label{fig:ms_diagram1}
-\end{figure}
-
-O algoritmo de aprendizado (meta-aprendiz) usa meta-exemplos rotulados
-previamente na meta-base para induzir um meta-classificador, que é utilizado
-para recomendar um algoritmo que induzirá um modelo usando a janela $\omega_b$
-que provavelmente será o mais preciso para prever os rótulos dos exemplos em
-$\eta_b$.
-
-
-
-% Em \cite{goodfellow2016deep}, são listadas mas não limitadas à onze tarefas
-% possíveis ao aprendizado supervisionado, para o problema proposto realizaremos
-% duas dessas tarefas, a classificação e a classificação com valores faltantes.
-
-% \subsection{Classificação}
-% Esta tarefa $\boldsymbol{T}$ consiste em designar uma categoria para a entrada
-% $\boldsymbol{x}$ dentro do conjunto finito $\mathcal K$ de $k$ categorias. Queremos
-% então aproximar a função $f:\mathbb{R}^n\longrightarrow \{1,...,k\}$, tal que, dado
-% um conjunto de entrada $\boldsymbol{x}$ a função designará um valor $y =
-% f(\boldsymbol{x})$ onde $y \in \mathcal{K}$. Existem variantes desta tarefa, que
-% não será abordada, onde ao invés de designar uma classe precisa à entrada
-% $\boldsymbol{x}$, é dado um vetor de probabilidades sobre todas as classes de
-% $\mathcal K$ \cite{goodfellow2016deep}.
-
-% % FAZER UM DIAGRAMA SIMILAR AO LEARNING FROM DATA pagina 30
-
-% \section{Fluxos de Dados e Mudança de Conceito}
-% \label{sec:fluxos-de-dados-e-mudanca-de-conceito}
-% Uma série temporal é um conjunto de observações obtidas sequencialmente no tempo
-% \cite{box2015time,brockwell2016introduction,durbin2012time}, onde o eixo temporal
-% costuma estar ligado a frequência em que esses dados são gerados, ex. meses, para
-% as vendas mensais de uma loja ou mili-segundos, para as transações de ações na
-% bolsa de valores. Sendo uma série temporal um processo estocástico indexado
-% \cite{hamilton1994time}, esse pode apresentar dependências temporais devido seu
-% processo gerador, eventos futuros são influenciados por eventos passados
-% \cite{karlin2012first}. Neste trabalho iremos nos ater a formalização do modelo
-% de \textit{espaço de estados} aditivo \cite{durbin2012time}.
-% \begin{definition}
-%     Uma série temporal é um conjunto de observações $S=\{x_1,...,x_n\}$ indexadas
-%     por $n \in \mathbb{N}$.
-% \end{definition}
-
-% O aprendizado apresentado na seção \ref{sec:aprendizado-de-maquina} é do tipo
-% indutivo, ele se baseia no axioma empiricista de que o futuro irá se comportar
-% como o passado \cite{vickers2009problem}, estatisticamente, que os dados serão
-% estacionários gerados de uma mesma função de probabilidade. Em ambientes
-% complexos e com dependência temporal, essa premissa pode não ser verdadeira
-% \cite{hulten2001mining}. Em fluxos de dados, que serão discutidos na seção
-% \ref{sec:fluxo-de-dados}, é comum tal mudança, portanto é necessário desenhar
-% sistemas capazes de se adaptar a essas condições \cite{gama2007learning}.
 

@@ -14,7 +14,7 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg1847"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="ms_diag0_off.svg">
   <defs
      id="defs1841">
@@ -752,7 +752,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="227.12741"
+     inkscape:cx="229.3386"
      inkscape:cy="1000.7823"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -818,7 +818,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1020,7 +1020,7 @@
          x="57.269825"
          y="3.7328234"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332"
-         id="tspan6145">Meta-data</tspan></text>
+         id="tspan6145">Dados-meta</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 55.877443,16.599425 h 3.47451"
@@ -1162,7 +1162,7 @@
          id="tspan1706-5-4-3"
          x="15.508054"
          y="3.6925347"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Base-data</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Dados-base</tspan></text>
     <rect
        style="opacity:0.6;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect819-6-1-61-6-1-9-9-7"

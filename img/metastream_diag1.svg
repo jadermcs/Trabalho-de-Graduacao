@@ -14,7 +14,7 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="metastream_diag1.svg">
   <defs
      id="defs2">
@@ -389,7 +389,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="213.27844"
+     inkscape:cx="111.10151"
      inkscape:cy="932.32578"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -450,7 +450,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -757,7 +757,7 @@
          id="tspan1381"
          x="29.766291"
          y="33.823818"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26458332">labeled (ω<tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26458332">rotulado (ω<tspan
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan985">b</tspan>)</tspan></text>
     <text
@@ -770,7 +770,7 @@
          id="tspan1381-7"
          x="70.348068"
          y="33.75111"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26458332">unlabeled (η<tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26458332">não rotulado (η<tspan
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan987">b</tspan>)</tspan></text>
     <path
@@ -945,15 +945,15 @@
        id="text1376"
        transform="scale(0.98885462,1.011271)"><tspan
          sodipodi:role="line"
-         id="tspan1374"
          x="24.793257"
          y="51.083382"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444">feature</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444"
+         id="tspan1378">extrator de</tspan><tspan
          sodipodi:role="line"
          x="24.793257"
          y="54.000771"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444"
-         id="tspan1378">extractor</tspan></text>
+         id="tspan1177">atributos</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1492-7)"
        d="m 33.949605,51.47996 h 5.004274"
@@ -969,7 +969,7 @@
          id="tspan1706-5"
          x="3.9542835"
          y="4.1687703"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Base-data</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Dados-base</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -1230,7 +1230,7 @@
          id="tspan1706"
          x="5.8709035"
          y="68.655991"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Meta-data</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:times;-inkscape-font-specification:times;stroke-width:0.26458332">Dados-meta</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect1360-4"
@@ -1249,12 +1249,12 @@
          x="78.800789"
          y="88.455345"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444"
-         id="tspan1378-0">learning</tspan><tspan
+         id="tspan2729">algoritmo de</tspan><tspan
          sodipodi:role="line"
          x="78.800789"
          y="91.372734"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444"
-         id="tspan2729">algorithm</tspan></text>
+         id="tspan1173">aprendizado</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1492-3)"
        d="M 77.982302,84.198863 V 72.81166"
@@ -1283,7 +1283,7 @@
          x="78.86882"
          y="68.190193"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.48845935px;line-height:17.00000018%;font-family:times;-inkscape-font-specification:times;text-align:center;text-anchor:middle;stroke-width:0.26163444"
-         id="tspan4304">model</tspan></text>
+         id="tspan4304">modelo</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend-3)"
        d="M 47.991328,90.793304 H 67.257244"

@@ -3,127 +3,55 @@ o progresso tecnológico \cite{dean2008mapreduce,atzori2010internet}, sistemas
 informáticos estão presentes no dia-a-dia das pessoas nas mais diversas formas,
 \textit{smartphones} e seus diversos aplicativos, \textit{smart things} (TVs,
 relógios, etc.), sensores, computadores de bordo e muitos outros dispositivos
-são exemplos dessa tecnologia. Tais sistemas por estarem conectado a redes
-internas e externas tem a capacidade de consumir e gerar um grande volume de
-dados. Esse fenômeno de geração e armazenamento de uma quantidade massiva de
-dados nos ultimos anos recebeu um nome, ``\textit{Big Data}''
+são exemplos dessa tecnologia. Tais sistemas, por estarem conectados à redes
+internas e externas, têm a capacidade de consumir e gerar um grande volume de
+dados e informação. Esse fenômeno de geração e armazenamento de uma quantidade massiva de
+dados recebeu um nome, ``\textit{Big Data}''
 \cite{mcafee2012big}.
 
-Essa grande quantidade de informação se tornou um dos bens mais valiosos do
-mundo moderno \cite{economist2017world}, e na era do \textit{Big Data},
-companhias como Google\regsymbol, Facebook\regsymbol, Netflix\regsymbol e
-Amazon\regsymbol tem tirado proveito dessas grandes quantidades de dados
-através da mineração com objetivo de extrair informações valiosas aos seus
-usuários \cite{tarnoff2018big, finger2014data}, fenômeno só possível devido a
-``injustificável eficácia dos dados'' \cite{halevy2009unreasonable}, em que
-nesse volume, mesmo sem qualquer supervisão e filtragem no processo gerador dos
-dados, essa quantidade massiva e complexa de dados, tornou viável muitas
-tarefas de inteligência artificial de grande valor, como recomendações de
-conteúdo, passaram a apresentar um desempenho desejável.
+Essa grande quantidade de informação, mesmo sem qualquer filtragem ou supervisão, tornou viável tarefas como recomendação de conteúdo e processamento de linguagem natural \cite{halevy2009unreasonable}, sendo essas de grande apelo comercial, o \textit{Big Data} se tornou um dos bens mais valiosos do mundo moderno \cite{economist2017world}. Companhias como Google\regsymbol{}, Facebook\regsymbol{}, Netflix\regsymbol{} e Amazon\regsymbol{} estão entre as empresas que competem por esse bem digital com o objetivo de extrair informações valiosas aos seus usuários e ao mercado como um todo \cite{tarnoff2018big, finger2014data}.
 
-Porém, com novas possibilidades vieram também novos desafios, grande parte dos
-sistemas computacionais que eram baseados no uso de memoria RAM para o
-processamento se tornaram inviáveis para essa industria que produz dados na
-escala de \textit{Petabytes} \cite{dean2008mapreduce}, logo, foi necessário a
-concepção de novos ambientes para operarem no armazenamento e processamento
-desses dados \cite{gama2007learning}. Ferramentas baseadas em computação
-distribuída se apresentaram como uma alternativa viável devido seu potencial de
-escalabilidade quase linear. Dentre essas ferramentas podemos exemplificar o
-Apache Hadoop\textsuperscript{\tiny\textregistered}, que fornece um ambiente de
-armazenamento distribuído, segmentando e replicando arquivos para que sejam
-distribuídos aos nós de um \textit{cluster} de forma automática, o Apache
-Spark\textsuperscript{\tiny\textregistered}, que provê um ambiente de
-computação distribuída, seguindo o paradigma MapReduce e o Apache
-Kafka\textsuperscript{\tiny\textregistered} o qual provê um ambiente para
-operar fluxos de dados.
+Fluxos de dados, ou \textit{Data Streams}, são ambientes típicos em infraestruturas de \textit{Big Data}, ao contrário de dados em lote, que tem inicio, fim e tamanho bem definidos, um fluxo de dados é uma fonte contínua (interminável) de dados, exemplos são redes de sensores e monitoramento, registros de sistemas web, transações em comércio eletrônico, entre outros. Do ponto de vista de engenharia, pela natureza dos dados, há imposições limitantes quanto a leitura e manipulação, o que torna os processos de mineração para esses
+ambientes uma tarefa não trivial \cite{gama2007learning}.
 
-Cliques em paginas de mídias sociais, interações de usuários em serviços de
-\textit{streaming}, monitoramento de ambientes por meio de sensores ou
-atividades realizadas com uso de dispositivos \textit{smart}, são exemplos de
-tecnologias que geram dados em um fluxo contínuo a uma alta frequência
-\cite{gama2004learning}. Nesse novo contexto o modelo usual, colunar e
-estruturado, não se apresentou como uma forma eficaz de armazenar e manipular
-esses dados em tempo real \cite{gama2007learning}, com isso, uma nova abordagem
-foi proposta. Fluxos de dados, ou \textit{Data Streams}, são conjuntos de dados
-gerados em tempo real de forma continua a frequências variáveis. Do ponto de
-vista de engenharia, pela natureza dos dados, há imposições limitantes quanto
-a leitura e manipulação, o que torna os processos de mineração para esses
-ambientes uma tarefa não trivial.
+Outro aspecto limitado para esses sistemas são as técnicas de mineração de dados \cite{gama2007learning}, dentre elas em especial o Aprendizado de Máquina (AM), campo que estuda métodos para a extração de padrões dos dados, para que esse conhecimento seja aplicado em tarefas futuras \cite{mitchell1997machine,friedman2001elements}. Como todo método indutivo, algoritmos tradicionais de AM assumem duas premissas que devem ser satisfeitas para sua validade: ($i$) o futuro deve se comportar como o passado e ($ii$) eventos futuros devem ser independentes de eventos passado \cite{vapnik2013nature}. Entretanto, em um fluxo de dados, a distribuição que gera os dados usualmente está mudando com o tempo e dependências temporais podem ocorrer.  Logo, essas premissas podem não se manter e o desempenho dos modelos induzidos podem perecer com o passar do tempo, causando uma má experiência aos usuários desses sistemas \cite{gama2007learning, Johansson2014}.
 
-Não só o processamento e armazenamento necessitou de novas abordagens, como
-também tecnicas de extração (ou mineração) de informação precisaram ser
-readaptadas a esse novo modelo. Uma das abordagens para extração de informação
-que tem sobressaído aliado ao \textit{Big Data} é o Aprendizado de Máquina
-(AM). O AM é o campo da inteligência artificial que estuda métodos para a
-extração de padrões dos dados, para que esse conhecimento seja aplicado em
-tarefas futuras \cite{mitchell1997machine,friedman2001elements}.
-
-Como todo método indutivo, algoritmos tradicionais de AM assumem duas premissas
-que devem ser satisfeitas para que funcionem corretamente: ($i$) o futuro deve
-se comportar como o passado e ($ii$) eventos futuros devem ser independentes de
-eventos passado \cite{vapnik2013nature}. Entretanto, em um fluxo de dados
-continuo, a distribuição que gera os dados usualmente está mudando com o tempo
-e dependências temporais podem ocorrer.  Logo, essas premissas podem não se
-manter e a performance dos modelos induzidos podem perecer com o passar do
-tempo, causando uma má experiência aos usuários desses sistemas
-\cite{gama2007learning, Johansson2014}.
-
-Diversos métodos foram desenvolvidos para lidar em ambientes com mudanças
+Diversas técnicas foram desenvolvidas para lidar com os problemas ocorridos em ambientes com mudanças
 temporais, como detecção de mudança de conceito
 \cite{klinkenberg2000detecting}, retreino periódico de algoritmo
 \cite{bifet2007learning} ou novas abordagens de algoritmos, especialmente
 projetados para esse contexto \cite{zang2014comparative}. Por exemplo, alguns
 métodos de detecção de mudança de conceito \cite{gama2010knowledge} são
-baseados em alarmes que disparam quando a diferença da performance do modelo
-atual e do melhor modelo até então é maior que um dado limiar. Outros métodos,
+baseados em alarmes que apontam quando há diferença de desempenho do modelo
+atual e do melhor modelo até o momento é maior que um dado limiar. Outros métodos,
 como a indução periódica de modelos, podem não ser suficientes para resolver
 esses problemas, já que o espaço de hipótese fixado do algoritmo pode não mais
-ser apropriado ao problema \cite{rossi2014metastream}.
+ser apropriado ao problema~\cite{rossi2014metastream}.
 
 Meta-Aprendizado (MtA) é uma técnica proeminente para resolver essas limitações
 através da detecção de mudança de conceito e recomendação de algoritmos para
-melhorar a predição \cite{Anderson2019,VanRijn2016,Zarmehri2015}. Para usar
-MtA, meta-dados devem ser construídos \cite{Vanschoren2018} baseado em uma
+melhorar a predição \cite{Anderson2019,VanRijn2016,Zarmehri2015}. Uma das abordagens para uso de MtA é a construção de meta-dados \cite{Vanschoren2018} baseado em uma
 conjunto de características descritivas, nomeados meta-atributos, do problema
-sob analise \cite{Rivolli2018}. Esses meta-atributos são extraídos e combinados
+sob análise \cite{Rivolli2018}. Esses meta-atributos são extraídos e combinados
 criando um meta-exemplo. Diferentes algoritmos de AM são aplicados ao problema,
-e suas performances são utilizadas para rotular os meta-exemplos. Esse
-procedimento é performado para o fluxo de dados em diferentes pontos no tempo,
+e seus desempenhos são utilizados para rotular os meta-exemplos. Esse
+procedimento é executado para o fluxo de dados em diferentes pontos no tempo,
 resultando em um conjunto de meta-dados, o qual pode ser usado para induzir um
 modelo capaz de predizer qual será o algoritmo mais apropriado para eventos
 futuros sem os altos custos usuais que o processo de seleção de modelos de ML
 demanda \cite{Munoz2018}.
 
-Nesse trabalho o MetaStream \cite{rossi2012, rossi2014metastream}, um
-\textit{framework} baseado em seleção periódica de algoritmos em fluxos de
-dados usando MtA, é aprimorado pela extensão de meta-atributos para mais
-modernos e informativos \cite{Rivolli2018}, e incluindo aprendizado incremental
-no nível meta, propondo o  LightGBM \cite{ke2017lightgbm} como
-meta-classificador, dado suas capacidades para lidar com esse problema
-específico. Seguimos então para investigar se meta-atributos de ponta e
-aprendizado incremental provido pelo LightGBM são capazes de predizer de forma
-mais precisa que o método base e aprimorar a performance geral do sistema
-aprendiz.
+O MetaStream, é um framework baseado em MtA, que mantém o treinamento contínuo de dois grupos de algoritmos por janelas deslizantes, algoritmos a nível base, que vão efetivamente predizer a variável alvo do fluxo de dados, e um algoritmo a nível meta, que é treinado com as características do fluxo, descrita por meta-atributos, e os respectivos desempenhos em momentos passados dos algoritmos nível base, para então recomendar o algoritmo mais adequado a ser usado no fluxo atual \cite{rossi2012, rossi2014metastream}.
+
+Nesse trabalho, o MetaStream é aprimorado pela extensão de meta-atributos para mais modernos e informativos \cite{Rivolli2018}, e incluindo aprendizado incremental no nível meta, propondo o  LightGBM \cite{ke2017lightgbm} como meta-classificador. Diferente do trabalho original em \cite{rossi2014metastream}, que eram usadas apenas medidas estatísticas simples como média, desvio padrão, curtose, etc. para descrever os dados, nesse trabalho estendemos por medidas estatísticas muito mais complexas, como esparsidade, Wilks' Lambda, e outros e medidas de grupos extraídos de modelos induzidos (\textit{Landmarking} e \textit{Model Based}). O LightGBM como meta-classificador fornece diversas propriedades interessantes, apresenta desempenho preditiva superior em relação a algoritmos semelhantes aliado a um menor consumo de recursos \cite{lightgbmBench}, lida nativamente com atributos faltantes, essencial para esse contexto pois em condições especificas o conjunto de meta-atributos apresenta atributos faltantes, e por fim, permite o aprendizado incremental que reduzir drasticamente o tempo de processamento e memória para induzir um novo modelo. Seguimos então para investigar se meta-atributos de ponta e aprendizado incremental provido pelo LightGBM são capazes de predizer de forma mais precisa que o método base e aprimorar o desempenho geral do sistema aprendiz.
 
 
-\section{Hipóteses}
+\section{Hipóteses e Objetivos}
 
-\begin{enumerate}
-    \item Em ambientes com mudança de conceito, vieses algorítmicos podem se tornar
-        inadequados em momentos futuros em razão de uma piora de performance.
-    \item Algoritmos incrementais embora apresentem um grau elevado de regularização,
-        podem desempenhar de forma semelhante aos não incrementais.
-    \item Meta-Atributos modernos apresentam melhor poder descritivo,
-        possibilitando uma melhora significativa no poder discriminativo de sistemas
-        que o utilizem.
-\end{enumerate}
+Como hipótese inicial desse trabalho, supomos que em ambientes com mudança de conceito, vieses algorítmicos podem se tornar inadequados em momentos futuros em razão de uma mudança de conceito. Também, é de interesse o uso de algoritmos incrementais nesse contexto, dado sua eficiência em memória e processamento, como segunda suposição, esperamos que esses algoritmos tenham desempenho similar para a recomendação em nível meta. Por fim, com os diversos avanços no desenvolvimento de meta-atributos, esperamos que esse atributos ``estado-da-arte'' com auto poder descritivo, possibilitem uma melhora significativa no poder de recomendação do \textit{framework}.
 
-\section{Objetivos}
+Com as hipóteses em questão, tomamos como objetivo para este trabalho demonstrar que meta-atributos modernos tem melhor poder descritivo que utilizados em literaturas prévias, permitindo recomendar efetivamente os melhores vieses algoritmos para momentos futuros e que classificadores incrementais em nível meta podem apresentar desempenho similar aos não-incrementais com a vantagem do menor consumo de memória e processamento. 
 
-\begin{enumerate}
-    \item Recomendar de forma efetiva algoritmos de melhor viés em um dado momento
-        do tempo.
-    \item Obter desempenho preditivo melhor ou equivalente com algoritmos incrementais.
-    \item Demonstrar que meta-atributos modernos tem melhor poder preditivo em função
-        dos utilizados em literaturas passadas.
-\end{enumerate}
+A partir dos estudos desse trabalho também foi concebido um artigo em conjunto com os professores Dr. André Rossi, Dr. Gustavo Batista e Dr. Luís Paulo Garcia (orientador desta monografia), que foi aceito para a conferência \textit{``25th International Conference on Pattern Recognition (ICPR), 2020''}, classificada como QUALIS A2 (2016), com título \textit{``Algorithm Recommendation for Data Streams''}, que está em anexo ao final do trabalho. 
+
+O restante desse texto esta estruturado da seguinte forma: o Capítulo \ref{chap:aprendizado} o que já tem sido feito para resolver o problema aqui proposto e as bases teóricas das soluções aqui empregas, o Capítulo \ref{chap:metodologia} apresenta a metodologia, constituída do \textit{framework} MetaStream, modificações aplicadas a ele e as configurações do experimento, o Capítulo \ref{chap:resultados} apresenta os resultados e analises dos experimentos conduzidos, e por fim, o Capítulo \ref{chap:conclusao} conclui a monografia.

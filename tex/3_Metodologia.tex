@@ -1,6 +1,13 @@
 \label{chap:metodologia}
 Neste capítulo descrevemos o MetaStream, um \textit{framework} para seleção periódica de algoritmos. Também apresentaremos os meta-atributos utilizados, justificativas, configurações do \textit{framework}, incluindo os algoritmos a nível base analisador, o meta-classificador, LightGBM em configurações incremental e não-incremental e as respectivas avaliações nos experimentos.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{general_diag}
+    \caption{Diagrama de operação do MetaStream.}
+    \label{fig:general_diag}
+\end{figure}
+
 \section{Metastream}
 \label{sec:metastream}
 
@@ -117,7 +124,7 @@ Logo, nosso conjunto de dados em nível meta tem rótulos de acordo com a perfor
 
 Para o meta-classificador, isto é, o recomendador, selecionamos o LightGBM por três razões principais. Primeiro, o LightGBM apresenta o estado-da-arte em performance preditiva para diferentes problemas \cite{ke2017lightgbm}. Segundo, o algoritmo lida automaticamente com atributos faltantes, o qual ocorrem comumente para os meta-atributos extraídos. Terceiro, ele apresenta uma capacidade de aprendizado incremental e baixo uso de recursos computacionais\footnote{\url{https://lightgbm.readthedocs.io/en/latest/Experiments.html}}, encorajando essa escolha para aplicações \textit{online}. Aprendizados incrementais e por lote apresentam uma distinção significativa. Enquanto o primeiro mantém as árvores e atualiza apenas os valores de seus nós, o segundo cria as árvores do zero. Não apenas o tempo de treinamento difere para essa variação, mas também o algoritmo incremental fixa \textit{a priori} a importância dos atributos.
 
-Para os meta-atributos, três grupos da Seção \ref{sec:metalearning} foram analisados, denominados estatístico, baseado em modelo e \textit{landmarking}. Os meta-atributos estatísticos capturam indicadores da localização e distribuição, as baseado em modelo extraem propriedades de árvores de decisão induzidas sobre os dados, enquanto as de \textit{landmarking} usam a performance de classificadores simples e rápidos para caracterizar os conjuntos de dados \cite{Rivolli2018}. No geral, eles tem alto poder discriminativo e um custo computacional médio. Para esses experimentos, usei meta-atributos disponíveis no pacote \textit{Python Meta-Feature Extractor} (pymfe) \cite{pymfe2020} disponível publicamente no GitHub\footnote{\url{https://github.com/ealcobaca/pymfe}}.
+Para os meta-atributos, três grupos da Seção \ref{sec:metalearning} foram analisados, denominados estatístico, baseado em modelo e \textit{landmarking}. Os meta-atributos estatísticos capturam indicadores da localização e distribuição, as baseado em modelo extraem propriedades de árvores de decisão induzidas sobre os dados, enquanto as de \textit{landmarking} usam a performance de classificadores simples e rápidos para caracterizar os conjuntos de dados \cite{Rivolli2018}. No geral, eles tem alto poder discriminativo e um custo computacional médio. Para esses experimentos, usamos meta-atributos disponíveis no pacote \textit{Python Meta-Feature Extractor} (pymfe) \cite{pymfe2020} disponível publicamente no GitHub\footnote{\url{https://github.com/ealcobaca/pymfe}}.
 
 Nós fixamos o tamanho das janelas para todos os experimentos, em ambos os níveis, base e meta,
 $\omega_{m;b} = 300$ e $\eta_{m;b} = 10$. O passo da janela de treinamento é o mesmo que $\eta$.

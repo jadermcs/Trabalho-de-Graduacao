@@ -15,7 +15,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 A possibilidade de aprender e fazer previsões com dados data de ao menos dois séculos, como os trabalhos de epidemiologia de Snow ou a predição de movimentos planetários por Gauss no século 19 \cite{vinten2003cholera,stigler1986history,russell2016artificial}. Porém, o uso de modelos extremamente complexos, com maior capacidade de inferência só se tornou possível devido a um fenômeno recente, o \textit{Big Data} \cite{mcafee2012big,halevy2009unreasonable}.
-Estendendo a abordagem tradicional de inferência, da regressão linear e analise de dados, o AM, que pode representar e modelar fenômenos muito mais complexos, tem chamado muita atenção com seu rápido progresso e resultados práticos desejáveis \cite{openai2019dota,gibney2016google}. Nesse capítulo iremos apresentar a teoria por trás desses dois fenômenos tecnológicos, o AM e o \textit{Big Data}, representado neste trabalho por Fluxos de Dados.
+Estendendo a abordagem tradicional de inferência, da regressão linear e análise de dados, o AM, que pode representar e modelar fenômenos muito mais complexos, tem chamado muita atenção com seu rápido progresso e resultados práticos desejáveis \cite{openai2019dota,gibney2016google}. Nesse capítulo iremos apresentar a teoria por trás desses dois fenômenos tecnológicos, o AM e o \textit{Big Data}, representado neste trabalho por Fluxos de Dados.
 
 
 \section{Aprendizado de Máquina}
@@ -87,11 +87,11 @@ essa é uma tarefa fácil, já que podemos compará-los em complexidade pelo
 polinômio de maior grau, porém estendendo essa tarefa para qualquer classe de
 funções, essa deixa de ser uma tarefa simples.
 
-No inicio do desenvolvimento de técnicas de inferência indutiva, não havia uma
+No início do desenvolvimento de técnicas de inferência indutiva, não havia uma
 definição formal do que seria uma hipótese ``mais simples'', em 1964 com o
 trabalho de Solomonoff da teoria de inferência indutiva universal
 \cite{solomonoff1964formal}, é apresentada uma definição formal para o que
-seria esse principio: a MT de menor comprimento que computa tal observação,
+seria esse princípio: a MT de menor comprimento que computa tal observação,
 isso é, a $f_c$ com menor complexidade de Kolmogorov. Esse sistema indutivo do
 ponto de vista teórico pode ser considerado perfeito \cite{li1992inductive},
 assumindo que o mundo é gerado por uma distribuição de probabilidade
@@ -168,8 +168,8 @@ dos teoremas PAC.
 % suficientemente grande e uma distribuição i.i.d, o valor esperado de $\Hat{R}$
 % se aproxima de $R$.
 
-Seja $n$ um numero de tal forma que qualquer
-representação de $X \in \mathcal{X}$ seja no máximo $O(n)$ e representado por
+Seja $n$ um número   que qualquer
+representação de $X \in \mathcal{X}$ tenha complexidade máximo $O(n)$ e representado por
 $size(c)$ o custo máximo da representação de uma $f_c$, ou seja, complexidade de
 Kolmogorov de $c \in \mathcal{C}$. Por exemplo, $X$ pode ser uma sequência de bits
 representando $R_c^m$, de tal forma que essa sequência tenha $O(n)$. Adicionalmente,
@@ -238,7 +238,7 @@ booleano que irá dividir os dados em dois subconjuntos, a cada divisão nos nó
 esses subconjuntos são aplicados a novos predicados gerando subconjuntos
 menores.
 
-Explicada o funcionamento das árvores, detalhamos agora como construí-las. Para
+Explicado o funcionamento das árvores, detalhamos agora como construí-las. Para
 isso, é feito uma busca exaustiva em todos os atributos $j$ e seus valores
 $t_m$ bi particionando os dados em $\theta = (j,t_m)$ como mostrado em
 \ref{eq:splitc}.
@@ -731,18 +731,17 @@ se sustentam em ambientes de FD, como apontado por A. Bifet and R.
 Gavald\`a (2007) \cite{bifet2007learning}, tendo em vista que os dados chegam
 interminavelmente, é esperado uma evolução no processo gerador dos dados e, por isso, dependência temporal e mudanças de conceito podem ocorrer.  Outro aspecto critico é a imposição de limites
 computacionais a esses ambientes, como memória, CPU, e largura de banda
-\cite{bifet2010moa, gama2012survey}. Para resolver esses problemas, diversas
-abordagens foram desenvolvidas, dentre elas, as mais proeminentes são
-mecanismos de esquecimento, testes estatísticos e algoritmos adaptativos.
+\cite{bifet2010moa, gama2012survey}.
 
 \section{Trabalhos Relacionados}
 
-
-
+Para resolver esses problemas, diversas
+abordagens foram desenvolvidas, dentre elas, as mais proeminentes são
+mecanismos de esquecimento, testes estatísticos e algoritmos adaptativos.
 Mecanismos de esquecimento fazem dados recentes tornarem-se mais relevantes e
 dados passados menos, um exemplo bastante adotado desse mecanismo são janelas deslizantes
 \cite{gaber2005mining}, janelas deslizantes é um método agnóstico de modelo que passa lotes de dados, a cada iteração, removendo amostras muito antigas e substituindo-as por amostras mais recentes. Já sistemas baseados em testes estatísticos agem monitorando uma métrica
-pre-definida, tal como performance preditiva do modelo (e.g. acurácia), e então ``disparam'' um
+pré-definida, tal como performance preditiva do modelo (e.g. acurácia), e então ``disparam'' um
 alarme quando a qualidade dessas métricas está abaixo de algum limiar
 tolerável, demandando alguma ação para corrigir essa deterioração.
 
@@ -752,9 +751,9 @@ Baseado nessas duas soluções, janelas deslizantes e testes estatísticos, o \t
 Entretanto, embora esses métodos sejam capazes de alarmar uma redução na performance dos modelos e adaptar o tamanho da janela a isso, não é possível identificar os algoritmos ou modelos que se tornaram mais apropriados ao novo conjunto de dados que está sendo gerado.
 
 Algoritmos de aprendizado adaptativo, como o VFDT \cite{domingos2000mining},
-foram inicialmente introduzidos com FD em mente, desempenhando aprendizado online e baixo consumo de memoria. Porém, não conseguiam se adaptar a mudança de conceito, um problema já conhecido na época.
-Mais tarde, aprimoramentos foram propostos, como o CVFDT (um aprimoramento direto sobre o VFDT) \cite{hulten2001mining}, o HAT \cite{bifet2009adaptive} e o ARF \cite{gomes2017adaptive}, que podem lidar com variação de conceito aplicando janelas deslizantes sobre o processo de treinamento.
+foram inicialmente introduzidos com FD em mente, desempenhando aprendizado online e baixo consumo de memória. Porém, não conseguiam se adaptar a mudança de conceito, um problema já conhecido na época.
+Mais tarde, aprimoramentos foram propostos, como o CVFDT (um aprimoramento direto sobre o VFDT) \cite{hulten2001mining}, o HAT \cite{bifet2009adaptive} e o ARF \cite{gomes2017adaptive} e outros \cite{manapragada2018extremely,bifet2017extremely}, que podem lidar com variação de conceito aplicando janelas deslizantes sobre o processo de treinamento.
 Entretanto, embora esses métodos esqueçam mais severamente dados passados quando ocorrer uma mudança de conceito, eles mantêm um espaço de hipótese fixo (Árvore de Decisão, para a maioria deles) para seleção em qualquer conceito que venha a surgir, logo, para conceitos distintos Árvores de Decisão podem não performar uma seleção ideal, gerando performances indesejáveis em algumas aplicações.
 
-Diferente das abordagens descritas acima, o MetaStream trata essas limitações da seguinte forma: (i) esse framework não precisa manter um sistema de alarme quanto a performance do algoritmo preditivo, pois dado um conjunto de algoritmos de desempenho razoável a nível base, é esperado que o método costume selecione o melhor ao longo do tempo, sem que nunca atinja, de forma prolongada, baixa performance; (ii) é flexível quanto ao viés indutivo, pois, diferente dos algoritmos anteriormente listados, que são limitados a Árvores de Decisão, a nível base qualquer algoritmo adequado a tarefa pode ser usado, como SVMs, Processos Gaussianos, modelos lineares, entre outros, já que é almejando espaços de hipótese como tarefas de aprendizado \cite{rossi2014metastream}.
+Diferente das abordagens descritas, o MetaStream trata essas limitações da seguinte forma: (i) esse framework não precisa manter um sistema de alarme quanto a performance do algoritmo preditivo, pois dado um conjunto de algoritmos de desempenho razoável a nível base, é esperado que o método costume selecione o melhor ao longo do tempo, sem que nunca atinja, de forma prolongada, baixa performance; (ii) é flexível quanto ao viés indutivo, pois, diferente dos algoritmos anteriormente listados, que são limitados a Árvores de Decisão, a nível base qualquer algoritmo adequado a tarefa pode ser usado, como SVMs, Processos Gaussianos, modelos lineares, entre outros, já que pode almejar vieses algorítmicos como tarefa de aprendizado \cite{rossi2014metastream}.
 
